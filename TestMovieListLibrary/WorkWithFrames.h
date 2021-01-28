@@ -7,6 +7,7 @@
 #include <vector>
 #include "ImageFormats.h"
 #include "ReadWriteSignature.h"
+#include <chrono>
 #define SIGNATURE_SIZE 512
 
 class WorkWithSignatures
@@ -30,7 +31,11 @@ public:
 			resizedFrame._pShot = ch;
 			workWithImage->StretchImage(resizedFrame._pShot, newFrame._pShot, SIGNATURE_SIZE, SIGNATURE_SIZE, newFrame._cx, newFrame._cy, SIGNATURE_SIZE * 3, newFrame._cx * 3, FORMAT_BGR);
 			CSignature *sign = NULL;
+			auto start = std::chrono::high_resolution_clock::now();
 			calculator.calculate(resizedFrame._pShot, BI_RGB, 24, &sign);
+			auto stop = std::chrono::high_resolution_clock::now();
+			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+			std::cout << "Time to calculate Signature: " << duration.count() << "microseconds " << std::endl;
 			if (sign != NULL) {
 					signatures.push_back(sign);	
 			}
@@ -66,13 +71,19 @@ public:
 		if (signatures.empty()) return false;
 		return true;
 	}
-	std::vector<CSignature*> GetSignatures() const {
+	std::vector<CSignature*> getSignatures() const {
 		return signatures;
 	}
+
+	size_t getSigAmount() const {
+		return signatures.size();
+	}
+
 private:
 	std::vector<CSignature*> signatures;
 	CSignatureCalculator calculator;
 	ReadWriteSignature RWSignature;
 	ATL::CComPtr<IStretchImage> workWithImage;
+
 };
 

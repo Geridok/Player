@@ -145,6 +145,7 @@
     <ClInclude Include="SignatureCalculator\FFTW\fftw++.h" />
     <ClInclude Include="SignatureCalculator\FFTW\fftw3.h" />
     <ClInclude Include="SignatureCalculator\SignatureCalculator.h" />
+    <ClInclude Include="SignatureComparator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestMovieListLibrary.h" />

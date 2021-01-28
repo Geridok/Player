@@ -17,16 +17,17 @@ CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CTestMovieListLibraryDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-	m_signaturesHandler = new WorkWithSignatures();
+	m_signaturesHandler_1 = new WorkWithSignatures();
 	WorkWithSignatures *second = new WorkWithSignatures();
-	m_Player = new CPlayer(m_signaturesHandler);
+	m_Player_1 = new CPlayer(m_signaturesHandler_1);
 	converter = ConvertBSRTtoString();
 }
 
 void CTestMovieListLibraryDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_FILE, m_File);
+	DDX_Control(pDX, IDC_FILE, m_editFileName_1);
+	DDX_Control(pDX, IDC_FILE2, m_editFileName_2);
 	DDX_Control(pDX, IDC_START, m_Start);
 	DDX_Control(pDX, IDC_OUT_FILE_NAME, m_OtpuFileName);
 }
@@ -36,6 +37,7 @@ BEGIN_MESSAGE_MAP(CTestMovieListLibraryDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BROWSE, &CTestMovieListLibraryDlg::OnBnClickedBrowse)
 	ON_BN_CLICKED(IDC_START, &CTestMovieListLibraryDlg::OnBnClickedStart)
+	ON_BN_CLICKED(IDC_BROWSE2, &CTestMovieListLibraryDlg::OnBnClickedBrowse2)
 END_MESSAGE_MAP()
 
 
@@ -99,21 +101,46 @@ void CTestMovieListLibraryDlg::OnBnClickedBrowse()
 {
 	CFileDialog dlg(TRUE, _T(""), _T(""), OFN_FILEMUSTEXIST, _T("All Files (*.*)|*.*||"), this);
 	if( IDOK==dlg.DoModal() ) {
-		m_File.SetWindowText(dlg.GetPathName());
+		m_editFileName_1.SetWindowText(dlg.GetPathName());
+	}
+}
+
+
+void CTestMovieListLibraryDlg::OnBnClickedBrowse2()
+{
+	CFileDialog dlg(TRUE, _T(""), _T(""), OFN_FILEMUSTEXIST, _T("All Files (*.*)|*.*||"), this);
+	if (IDOK == dlg.DoModal()) {
+		m_editFileName_2.SetWindowText(dlg.GetPathName());
 	}
 }
 
 void CTestMovieListLibraryDlg::OnBnClickedStart()
 {
+
 	CString fileName1;
-	m_File.GetWindowText(fileName1);
-	m_fileName1 = fileName1;
-	if( S_OK==CheckMovie(m_fileName1)) {
-		InitPlayer();
+	CString fileName2;
+
+	m_editFileName_1.GetWindowText(fileName1);
+	m_bstrFileName_1 = fileName1;
+
+	m_editFileName_2.GetWindowText(fileName2);
+	m_bstrFileName_2 = fileName2;
+
+	if( CheckMovie(m_bstrFileName_1) == S_OK) {
+		InitPlayer(m_Player_1,m_bstrFileName_1);
 		GetOutputFileName();
-		m_signaturesHandler->compareVideo(converter.ConvertBSTRToString(m_outFileName));
+		m_signaturesHandler_1->compareVideo(converter.ConvertBSTRToString(m_outFileName));
 		
-	} 
+	}
+	else {
+		return;
+	}
+	if( CheckMovie(m_bstrFileName_2) == S_OK ) {
+
+	}
+	else {
+		return;
+	}
 }
 
 
@@ -125,10 +152,10 @@ void CTestMovieListLibraryDlg::GetOutputFileName()
 }
 
 
-HRESULT CTestMovieListLibraryDlg::InitPlayer()
+HRESULT CTestMovieListLibraryDlg::InitPlayer(CPlayer* player, CComBSTR path)
 {
-		HRESULT hres = m_Player->Init(m_fileName1);
-		ATLASSERT(hres==S_OK);
+		HRESULT hres = player->Init(path);
+		ATLASSERT(hres == S_OK);
 		if( hres != S_OK )  return hres;
 	return S_OK;
 }
@@ -146,3 +173,4 @@ HRESULT CTestMovieListLibraryDlg::CheckMovie(CComBSTR fileName)
 	if( hres != S_OK )  return hres;
 	return S_OK;
 }
+

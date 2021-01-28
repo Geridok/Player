@@ -14,8 +14,8 @@ class CTestMovieListLibraryDlg : public CDialog
 public:
 	CTestMovieListLibraryDlg(CWnd* pParent = NULL);// standard constructor
 	~CTestMovieListLibraryDlg() {
-		delete m_signaturesHandler;
-		delete m_Player;
+		delete m_signaturesHandler_1;
+		delete m_Player_1;
 	}
 // Dialog Data
 	enum { IDD = IDD_TESTMOVIELISTLIBRARY_DIALOG };
@@ -27,18 +27,29 @@ public:
 // Implementation
 protected:
 	HICON m_hIcon;
-	CEdit m_File;
+
+	CEdit m_editFileName_1;
+	CEdit m_editFileName_2;
+
 	CButton m_Start;
 	CEdit m_OtpuFileName;
 	static const int cTaskFrameCnt = 5*25;
-	CPlayer *m_Player;
-	CComBSTR m_fileName1;
+
+	CPlayer *m_Player_1;
+	CPlayer *m_Player_2;
+
+	CComBSTR m_bstrFileName_1;
+	CComBSTR m_bstrFileName_2;
+
 	CComBSTR m_outFileName;
 	CStatic m_textField;
-	WorkWithSignatures* m_signaturesHandler;
+
+	WorkWithSignatures* m_signaturesHandler_1;
+	WorkWithSignatures* m_signaturesHandler_2;
 
 protected:
-	HRESULT InitPlayer();
+	HRESULT InitPlayer(CPlayer *player, CComBSTR path);
+
 	HRESULT CheckMovie(CComBSTR fileName);
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
@@ -50,4 +61,6 @@ protected:
 	void GetOutputFileName();
 private:
 	ConvertBSRTtoString converter;
+public:
+	afx_msg void OnBnClickedBrowse2();
 };
