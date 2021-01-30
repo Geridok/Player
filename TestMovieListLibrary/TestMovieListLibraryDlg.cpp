@@ -6,20 +6,31 @@
 #include "TestMovieListLibrary.h"
 #include "TestMovieListLibraryDlg.h"
 #include "WorkWithFrames.h"
+#include "SignatureComparator.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
+std::vector<std::chrono::microseconds> calc_1 = std::vector<std::chrono::microseconds>{};
+std::vector<std::chrono::microseconds> calc_2 = std::vector<std::chrono::microseconds>{};
+
+bool firstVideo = true;
+
+std::vector<std::chrono::microseconds> compare = std::vector<std::chrono::microseconds>{};
 
 // CTestMovieListLibraryDlg dialog
 CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CTestMovieListLibraryDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+
 	m_signaturesHandler_1 = new WorkWithSignatures();
-	WorkWithSignatures *second = new WorkWithSignatures();
+	m_signaturesHandler_2 = new WorkWithSignatures();
+
 	m_Player_1 = new CPlayer(m_signaturesHandler_1);
+	m_Player_2 = new CPlayer(m_signaturesHandler_2);
+
 	converter = ConvertBSRTtoString();
 }
 
@@ -28,8 +39,13 @@ void CTestMovieListLibraryDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_FILE, m_editFileName_1);
 	DDX_Control(pDX, IDC_FILE2, m_editFileName_2);
+
+	DDX_Control(pDX, IDC_EDIT2, m_editAvgCalcTime_1);
+	DDX_Control(pDX, IDC_EDIT3, m_editAvgCalcTime_2);
+	DDX_Control(pDX, IDC_EDIT4, m_editAvgCompTime);
+
 	DDX_Control(pDX, IDC_START, m_Start);
-	DDX_Control(pDX, IDC_OUT_FILE_NAME, m_OtpuFileName);
+	DDX_Control(pDX, IDC_OUT_FILE_NAME, m_editOutFileName);
 }
 
 BEGIN_MESSAGE_MAP(CTestMovieListLibraryDlg, CDialog)
@@ -127,28 +143,53 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 	m_bstrFileName_2 = fileName2;
 
 	if( CheckMovie(m_bstrFileName_1) == S_OK) {
+
 		InitPlayer(m_Player_1,m_bstrFileName_1);
-		GetOutputFileName();
-		m_signaturesHandler_1->compareVideo(converter.ConvertBSTRToString(m_outFileName));
-		
-	}
-	else {
-		return;
-	}
-	if( CheckMovie(m_bstrFileName_2) == S_OK ) {
 
 	}
 	else {
 		return;
 	}
+	if( CheckMovie(m_bstrFileName_2) == S_OK ) {
+		firstVideo = false;
+		InitPlayer(m_Player_2, m_bstrFileName_2);
+
+	}
+	else {
+		return;
+	}
+
+	GetOutputFileName();
+	auto diffVec = SignatureComparator::compareSignatures(m_signaturesHandler_1, m_signaturesHandler_2);
+	auto fileNameOutput = converter.ConvertBSTRToString(m_bsrtOutFileName);
+	fileNameOutput += ".txt";
+	size_t i = 1;
+	std::ofstream fout(fileNameOutput);
+	for (auto it : diffVec) {
+		fout << "Frame: " + std::to_string(i) + " and: " + std::to_string(i) + "\t" + std::to_string(it) << std::endl;
+		i++;
+	}
+	auto avg = std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0));
+
+	CString avg_1;
+	avg_1.Format(_T("%d"), std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0)) / calc_1.size());
+	m_editAvgCalcTime_1.SetWindowText(avg_1);
+
+	CString avg_2;
+	avg_2.Format(_T("%d"), std::accumulate(calc_2.begin(), calc_2.end(), decltype(calc_2)::value_type(0)) / calc_2.size());
+	m_editAvgCalcTime_2.SetWindowText(avg_2);
+
+	CString avgcomp;
+	avgcomp.Format(_T("%d"), std::accumulate(compare.begin(), compare.end(), decltype(compare)::value_type(0)) / compare.size());
+	m_editAvgCompTime.SetWindowText(avgcomp);
 }
 
 
 void CTestMovieListLibraryDlg::GetOutputFileName()
 {
 	CString str;
-	m_OtpuFileName.GetWindowText(str);
-	m_outFileName = str;
+	m_editOutFileName.GetWindowText(str);
+	m_bsrtOutFileName = str;
 }
 
 

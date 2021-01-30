@@ -6,6 +6,7 @@
 #include "afxwin.h"
 #include "Player.h"
 #include "ConverterBSRTtoString.h"
+#include <numeric>
 
 // CTestMovieListLibraryDlg dialog
 class CTestMovieListLibraryDlg : public CDialog
@@ -31,8 +32,12 @@ protected:
 	CEdit m_editFileName_1;
 	CEdit m_editFileName_2;
 
+	CEdit m_editAvgCalcTime_1;
+	CEdit m_editAvgCalcTime_2;
+	CEdit m_editAvgCompTime;
+
 	CButton m_Start;
-	CEdit m_OtpuFileName;
+	CEdit m_editOutFileName;
 	static const int cTaskFrameCnt = 5*25;
 
 	CPlayer *m_Player_1;
@@ -41,7 +46,7 @@ protected:
 	CComBSTR m_bstrFileName_1;
 	CComBSTR m_bstrFileName_2;
 
-	CComBSTR m_outFileName;
+	CComBSTR m_bsrtOutFileName;
 	CStatic m_textField;
 
 	WorkWithSignatures* m_signaturesHandler_1;

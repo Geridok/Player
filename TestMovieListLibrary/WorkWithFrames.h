@@ -10,6 +10,10 @@
 #include <chrono>
 #define SIGNATURE_SIZE 512
 
+extern std::vector<std::chrono::microseconds> calc_1;
+extern std::vector<std::chrono::microseconds> calc_2;
+extern bool firstVideo;
+
 class WorkWithSignatures
 {
 public:
@@ -35,7 +39,12 @@ public:
 			calculator.calculate(resizedFrame._pShot, BI_RGB, 24, &sign);
 			auto stop = std::chrono::high_resolution_clock::now();
 			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-			std::cout << "Time to calculate Signature: " << duration.count() << "microseconds " << std::endl;
+			if (firstVideo) { 
+				calc_1.push_back(duration);
+			}
+			else {
+				calc_2.push_back(duration);
+			}
 			if (sign != NULL) {
 					signatures.push_back(sign);	
 			}
@@ -43,24 +52,7 @@ public:
 		}
 
 	}
-	void compareVideo(std::string fileNameOutput,size_t step = 1) {
-		std::vector<double> diffVec;
-		fileNameOutput += ".txt";
-		size_t nextShot = step;
-		std::ofstream fout(fileNameOutput);
-		for (size_t i =	0; i < signatures.size(); i++)
-		{
-			if (nextShot == signatures.size()) break;
-			double diff = signatures[i]->difference(*signatures[nextShot]);
-			diffVec.push_back(diff);
-			nextShot++;
-		}
-		size_t i = 1;
-		for (auto it : diffVec) {
-			fout << "Frame: " + std::to_string(i) + " and: "+ std::to_string(i+step) + "\t" + std::to_string(it) << std::endl;
-			i++;
-		}
-	}
+
 	void saveSignaturesToFile(std::string fileName) {
 		if (!signatures.empty()) {
 			RWSignature.writeSignaturesToFile(fileName, signatures);
