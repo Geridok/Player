@@ -22,7 +22,7 @@ std::vector<std::chrono::microseconds> compare = std::vector<std::chrono::micros
 // CTestMovieListLibraryDlg dialog
 CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CTestMovieListLibraryDlg::IDD, pParent)
-{
+{	
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_signaturesHandler_1 = new WorkWithSignatures();
@@ -119,6 +119,15 @@ void CTestMovieListLibraryDlg::OnBnClickedBrowse()
 	if( IDOK==dlg.DoModal() ) {
 		m_editFileName_1.SetWindowText(dlg.GetPathName());
 	}
+	CString fileName1;
+	m_editFileName_1.GetWindowText(fileName1);
+	m_bstrFileName_1 = fileName1;
+	if (CheckMovie(m_bstrFileName_1) != S_OK) {
+		m_editFileName_1.SetWindowTextW(CString("Can't read file, plz choose different file"));
+		stop = true;
+		return;
+	}
+	stop = false;
 }
 
 
@@ -128,60 +137,65 @@ void CTestMovieListLibraryDlg::OnBnClickedBrowse2()
 	if (IDOK == dlg.DoModal()) {
 		m_editFileName_2.SetWindowText(dlg.GetPathName());
 	}
+	CString fileName;
+	m_editFileName_2.GetWindowText(fileName);
+	m_bstrFileName_2 = fileName;
+	if (CheckMovie(m_bstrFileName_2) != S_OK) {
+		m_editFileName_2.SetWindowTextW(CString("Can't read file, plz choose different file"));
+		stop = true;
+		return;
+	}
+	stop = false;
 }
 
 void CTestMovieListLibraryDlg::OnBnClickedStart()
 {
+	if (!stop) {
+		CString fileName1;
+		CString fileName2;
 
-	CString fileName1;
-	CString fileName2;
+		m_editFileName_1.GetWindowText(fileName1);
+		m_bstrFileName_1 = fileName1;
 
-	m_editFileName_1.GetWindowText(fileName1);
-	m_bstrFileName_1 = fileName1;
+		m_editFileName_2.GetWindowText(fileName2);
+		m_bstrFileName_2 = fileName2;
 
-	m_editFileName_2.GetWindowText(fileName2);
-	m_bstrFileName_2 = fileName2;
-
-	if( CheckMovie(m_bstrFileName_1) == S_OK) {
-
-		InitPlayer(m_Player_1,m_bstrFileName_1);
-
-	}
-	else {
-		return;
-	}
-	if( CheckMovie(m_bstrFileName_2) == S_OK ) {
+		InitPlayer(m_Player_1, m_bstrFileName_1);
 		firstVideo = false;
 		InitPlayer(m_Player_2, m_bstrFileName_2);
 
+		GetOutputFileName();
+		auto diffVec = SignatureComparator::compareSignatures(m_signaturesHandler_1, m_signaturesHandler_2);
+		auto fileNameOutput = converter.ConvertBSTRToString(m_bsrtOutFileName);
+		std::string diffOut = fileNameOutput + "Diff.txt";
+		std::string calcOut_1 = fileNameOutput + "Calc1.txt";
+		std::string calcOut_2 = fileNameOutput + "Calc2.txt";
+		std::string compOut = fileNameOutput + "Comp.txt";
+
+		size_t i = 1;
+		std::ofstream fout(fileNameOutput);
+		for (auto it : diffVec) {
+			fout <<  std::to_string(i) + "\t" + std::to_string(it) << std::endl;
+			i++;
+		}
+
+		std::ofstream fout
+		auto avg = std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0));
+
+		CString avg_1;
+		avg_1.Format(_T("%d"), std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0)) / calc_1.size());
+		m_editAvgCalcTime_1.SetWindowText(avg_1);
+
+		CString avg_2;
+		avg_2.Format(_T("%d"), std::accumulate(calc_2.begin(), calc_2.end(), decltype(calc_2)::value_type(0)) / calc_2.size());
+		m_editAvgCalcTime_2.SetWindowText(avg_2);
+
+		CString avgcomp;
+		avgcomp.Format(_T("%d"), std::accumulate(compare.begin(), compare.end(), decltype(compare)::value_type(0)) / compare.size());
+		m_editAvgCompTime.SetWindowText(avgcomp);
+		ReloadPlayer();
 	}
-	else {
-		return;
-	}
-
-	GetOutputFileName();
-	auto diffVec = SignatureComparator::compareSignatures(m_signaturesHandler_1, m_signaturesHandler_2);
-	auto fileNameOutput = converter.ConvertBSTRToString(m_bsrtOutFileName);
-	fileNameOutput += ".txt";
-	size_t i = 1;
-	std::ofstream fout(fileNameOutput);
-	for (auto it : diffVec) {
-		fout << "Frame: " + std::to_string(i) + " and: " + std::to_string(i) + "\t" + std::to_string(it) << std::endl;
-		i++;
-	}
-	auto avg = std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0));
-
-	CString avg_1;
-	avg_1.Format(_T("%d"), std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0)) / calc_1.size());
-	m_editAvgCalcTime_1.SetWindowText(avg_1);
-
-	CString avg_2;
-	avg_2.Format(_T("%d"), std::accumulate(calc_2.begin(), calc_2.end(), decltype(calc_2)::value_type(0)) / calc_2.size());
-	m_editAvgCalcTime_2.SetWindowText(avg_2);
-
-	CString avgcomp;
-	avgcomp.Format(_T("%d"), std::accumulate(compare.begin(), compare.end(), decltype(compare)::value_type(0)) / compare.size());
-	m_editAvgCompTime.SetWindowText(avgcomp);
+	stop = true;
 }
 
 
@@ -201,16 +215,30 @@ HRESULT CTestMovieListLibraryDlg::InitPlayer(CPlayer* player, CComBSTR path)
 	return S_OK;
 }
 
+void CTestMovieListLibraryDlg::ReloadPlayer()
+{
+	delete m_signaturesHandler_1;
+	delete m_Player_1;
+	delete m_signaturesHandler_2;
+	delete m_Player_2;
+
+	m_signaturesHandler_1 = new WorkWithSignatures();
+	m_signaturesHandler_2 = new WorkWithSignatures();
+
+	m_Player_1 = new CPlayer(m_signaturesHandler_1);
+	m_Player_2 = new CPlayer(m_signaturesHandler_2);
+}
+
 HRESULT CTestMovieListLibraryDlg::CheckMovie(CComBSTR fileName)
 {
 	CComPtr<MovieListLibraryLib::ISLTMMovieCreator> pICreator;
 	HRESULT hres = pICreator.CoCreateInstance(MovieListLibraryLib::CLSID_SLTMMovieCreator);
-	ATLASSERT(hres==S_OK);
+	//ATLASSERT(hres==S_OK);
 	if( hres != S_OK )  return hres;
 	hres = pICreator->Init(25.0, 10, 0, 0, 0);
 	CComPtr<MovieListLibraryLib::ISLTMMovie> pIUnk;
 	hres = pICreator->CreateMovie(MovieListLibraryLib::eMovieType_Film, fileName, 10,0,0, &pIUnk); 
-	ATLASSERT(hres==S_OK);
+	//ATLASSERT(hres==S_OK);
 	if( hres != S_OK )  return hres;
 	return S_OK;
 }

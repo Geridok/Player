@@ -150,6 +150,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestMovieListLibrary.h" />
     <ClInclude Include="TestMovieListLibraryDlg.h" />
+    <ClInclude Include="winbgitypes.h" />
     <ClInclude Include="WorkWithFrames.h" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libkoolplot.a" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

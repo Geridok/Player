@@ -17,6 +17,8 @@ public:
 	~CTestMovieListLibraryDlg() {
 		delete m_signaturesHandler_1;
 		delete m_Player_1;
+		delete m_signaturesHandler_2;
+		delete m_Player_2;
 	}
 // Dialog Data
 	enum { IDD = IDD_TESTMOVIELISTLIBRARY_DIALOG };
@@ -54,7 +56,7 @@ protected:
 
 protected:
 	HRESULT InitPlayer(CPlayer *player, CComBSTR path);
-
+	void ReloadPlayer();
 	HRESULT CheckMovie(CComBSTR fileName);
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
@@ -66,6 +68,7 @@ protected:
 	void GetOutputFileName();
 private:
 	ConvertBSRTtoString converter;
+	bool stop = false;
 public:
 	afx_msg void OnBnClickedBrowse2();
 };
