@@ -173,13 +173,35 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 		std::string compOut = fileNameOutput + "Comp.txt";
 
 		size_t i = 1;
-		std::ofstream fout(fileNameOutput);
-		for (auto it : diffVec) {
-			fout <<  std::to_string(i) + "\t" + std::to_string(it) << std::endl;
-			i++;
+		{
+			std::ofstream diffFout(diffOut);
+			for (auto it : diffVec) {
+				diffFout << std::to_string(i) + "\t" + std::to_string(it) << std::endl;
+				i++;
+			}
+		}
+		{
+			std::ofstream calcFout_1(calcOut_1);
+			for (auto it : calc_1) {
+				calcFout_1 << std::to_string(i) << "\t" << it.count() << std::endl;
+				i++;
+			}
+		}
+		{
+			std::ofstream calcFout_2(calcOut_2);
+			for (auto it : calc_2) {
+				calcFout_2 << std::to_string(i) << "\t" << it.count() << std::endl;
+				i++;
+			}
+		}
+		{
+			std::ofstream compFout(compOut);
+			for (auto it : compare) {
+				compFout << std::to_string(i) << "\t" << it.count() << std::endl;
+				i++;
+			}
 		}
 
-		std::ofstream fout
 		auto avg = std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0));
 
 		CString avg_1;
