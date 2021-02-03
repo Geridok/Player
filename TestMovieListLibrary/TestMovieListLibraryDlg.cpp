@@ -14,10 +14,10 @@
 
 std::vector<std::chrono::microseconds> calc_1 = std::vector<std::chrono::microseconds>{};
 std::vector<std::chrono::microseconds> calc_2 = std::vector<std::chrono::microseconds>{};
+std::vector<std::chrono::microseconds> compare = std::vector<std::chrono::microseconds>{};
 
 bool firstVideo = true;
 
-std::vector<std::chrono::microseconds> compare = std::vector<std::chrono::microseconds>{};
 
 // CTestMovieListLibraryDlg dialog
 CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
@@ -25,13 +25,14 @@ CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
 {	
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-	m_signaturesHandler_1 = new WorkWithSignatures();
-	m_signaturesHandler_2 = new WorkWithSignatures();
+	m_signaturesHandler_1 = new SignatureHandler(0);
+	m_signaturesHandler_2 = new SignatureHandler(0);
 
 	m_Player_1 = new CPlayer(m_signaturesHandler_1);
 	m_Player_2 = new CPlayer(m_signaturesHandler_2);
 
 	converter = ConvertBSRTtoString();
+	comparator = SignatureComparator();
 }
 
 void CTestMovieListLibraryDlg::DoDataExchange(CDataExchange* pDX)
@@ -43,6 +44,8 @@ void CTestMovieListLibraryDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT2, m_editAvgCalcTime_1);
 	DDX_Control(pDX, IDC_EDIT3, m_editAvgCalcTime_2);
 	DDX_Control(pDX, IDC_EDIT4, m_editAvgCompTime);
+	DDX_Control(pDX, IDC_EDIT5, m_editRangeFrom);
+	DDX_Control(pDX, IDC_EDIT6, m_editRangeTo);
 
 	DDX_Control(pDX, IDC_START, m_Start);
 	DDX_Control(pDX, IDC_OUT_FILE_NAME, m_editOutFileName);
@@ -165,15 +168,21 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 		InitPlayer(m_Player_2, m_bstrFileName_2);
 
 		GetOutputFileName();
-		auto diffVec = SignatureComparator::compareSignatures(m_signaturesHandler_1, m_signaturesHandler_2);
+		std::pair<std::pair<uint64_t, uint64_t>, std::pair<uint64_t, uint64_t>> ranges;
+		for (int index = 0; index < m_signaturesHandler_1->getSigAmount(); index++) {
+			ranges = comparator.comparePair(m_signaturesHandler_1, index, m_signaturesHandler_2, 0, 0.5);
+			if (ranges.second.second != 0) { break; }
+		}
+
 		auto fileNameOutput = converter.ConvertBSTRToString(m_bsrtOutFileName);
 		std::string diffOut = fileNameOutput + "Diff.txt";
 		std::string calcOut_1 = fileNameOutput + "Calc1.txt";
 		std::string calcOut_2 = fileNameOutput + "Calc2.txt";
 		std::string compOut = fileNameOutput + "Comp.txt";
 
-		size_t i = 1;
+		/*size_t i = 1;
 		{
+			i = 0;
 			std::ofstream diffFout(diffOut);
 			for (auto it : diffVec) {
 				diffFout << std::to_string(i) + "\t" + std::to_string(it) << std::endl;
@@ -181,6 +190,7 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 			}
 		}
 		{
+			i = 0;
 			std::ofstream calcFout_1(calcOut_1);
 			for (auto it : calc_1) {
 				calcFout_1 << std::to_string(i) << "\t" << it.count() << std::endl;
@@ -188,6 +198,7 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 			}
 		}
 		{
+			i = 0;
 			std::ofstream calcFout_2(calcOut_2);
 			for (auto it : calc_2) {
 				calcFout_2 << std::to_string(i) << "\t" << it.count() << std::endl;
@@ -195,14 +206,15 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 			}
 		}
 		{
+			i = 0;
 			std::ofstream compFout(compOut);
 			for (auto it : compare) {
 				compFout << std::to_string(i) << "\t" << it.count() << std::endl;
 				i++;
 			}
 		}
-
-		auto avg = std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0));
+		*/
+		//auto avg = std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0));
 
 		CString avg_1;
 		avg_1.Format(_T("%d"), std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0)) / calc_1.size());
@@ -215,6 +227,16 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 		CString avgcomp;
 		avgcomp.Format(_T("%d"), std::accumulate(compare.begin(), compare.end(), decltype(compare)::value_type(0)) / compare.size());
 		m_editAvgCompTime.SetWindowText(avgcomp);
+
+		CString rangeFrom;
+		rangeFrom.Format(_T("%d"), ranges.second.first);
+		m_editRangeFrom.SetWindowText(rangeFrom);
+
+		CString rangeTo;
+		rangeTo.Format(_T("%d"), ranges.second.second);
+		m_editRangeTo.SetWindowText(rangeTo);
+		
+
 		ReloadPlayer();
 	}
 	stop = true;
@@ -244,8 +266,8 @@ void CTestMovieListLibraryDlg::ReloadPlayer()
 	delete m_signaturesHandler_2;
 	delete m_Player_2;
 
-	m_signaturesHandler_1 = new WorkWithSignatures();
-	m_signaturesHandler_2 = new WorkWithSignatures();
+	m_signaturesHandler_1 = new SignatureHandler(0);
+	m_signaturesHandler_2 = new SignatureHandler(0);
 
 	m_Player_1 = new CPlayer(m_signaturesHandler_1);
 	m_Player_2 = new CPlayer(m_signaturesHandler_2);

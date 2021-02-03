@@ -14,21 +14,22 @@ extern std::vector<std::chrono::microseconds> calc_1;
 extern std::vector<std::chrono::microseconds> calc_2;
 extern bool firstVideo;
 
-class WorkWithSignatures
+class SignatureHandler
 {
 public:
-	WorkWithSignatures() {
+	SignatureHandler(uint64_t buffSize) :m_buffSize{buffSize} {
 		calculator.initialize(CGeneralSettings::enum_ImageSize_512x512, 128, CGeneralSettings::enum_Sens_High); 
 		HRESULT hres = workWithImage.CoCreateInstance(CLSID_StretchImage);
 		ATLASSERT(hres == S_OK);
 	}
-	~WorkWithSignatures() {
+	~SignatureHandler() {
 		for (auto it : signatures) {
 			it->release();
 		}
 	}
 
 	void addFrame(MovieListLibraryLib::ShotInfo2 newFrame) {
+		
 		if (sizeof(newFrame._pShot) > 0) {
 			MovieListLibraryLib::ShotInfo2 resizedFrame(newFrame);
 			unsigned char* ch = (unsigned char*)malloc(resizedFrame._shotSizeBytes);
@@ -76,6 +77,6 @@ private:
 	CSignatureCalculator calculator;
 	ReadWriteSignature RWSignature;
 	ATL::CComPtr<IStretchImage> workWithImage;
-
+	uint64_t m_buffSize;
 };
 

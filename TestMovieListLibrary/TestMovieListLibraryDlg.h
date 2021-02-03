@@ -6,6 +6,7 @@
 #include "afxwin.h"
 #include "Player.h"
 #include "ConverterBSRTtoString.h"
+#include "SignatureComparator.h"
 #include <numeric>
 
 // CTestMovieListLibraryDlg dialog
@@ -37,6 +38,8 @@ protected:
 	CEdit m_editAvgCalcTime_1;
 	CEdit m_editAvgCalcTime_2;
 	CEdit m_editAvgCompTime;
+	CEdit m_editRangeFrom;
+	CEdit m_editRangeTo;
 
 	CButton m_Start;
 	CEdit m_editOutFileName;
@@ -51,8 +54,8 @@ protected:
 	CComBSTR m_bsrtOutFileName;
 	CStatic m_textField;
 
-	WorkWithSignatures* m_signaturesHandler_1;
-	WorkWithSignatures* m_signaturesHandler_2;
+	SignatureHandler* m_signaturesHandler_1;
+	SignatureHandler* m_signaturesHandler_2;
 
 protected:
 	HRESULT InitPlayer(CPlayer *player, CComBSTR path);
@@ -68,6 +71,7 @@ protected:
 	void GetOutputFileName();
 private:
 	ConvertBSRTtoString converter;
+	SignatureComparator comparator;
 	bool stop = false;
 public:
 	afx_msg void OnBnClickedBrowse2();
