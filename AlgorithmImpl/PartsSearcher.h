@@ -14,14 +14,14 @@ public:
     explicit PartsSearcher(double c_2):c_2{c_2}{};
     void startSearching();
 private:
-    void workWithSearchWindow(SearchInfo &currentSearchInfo, CSignature* streamSign);
+    void workWithSearchInfo(SearchInfo &currentSearchInfo, CSignature* streamSign);
     bool defineSearchWindow(SearchInfo &currentSearchInfo, CSignature *streamSig);
 
     std::list<SearchInfo> searchInfoList;
     double c_2;
     std::vector<std::shared_ptr<VideoPart>> matchedVideoParts;
 
-    bool checkFramesInWindow(SearchInfo &currentSearchInfo, CSignature *streamSig);
+    bool checkSignInWindow(SearchInfo &currentSearchInfo, CSignature *streamSig);
     void chooseSignIndex(std::vector<size_t> &matchedSignatures, SearchInfo &currentSearchInfo);
 };
 

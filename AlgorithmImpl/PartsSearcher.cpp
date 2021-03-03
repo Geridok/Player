@@ -39,7 +39,7 @@ void PartsSearcher::startSearching() {
                                                             return *SI.videoPart == curPart;
                                                         });
                 if (currentSearchWindow != searchInfoList.end()) {
-                    workWithSearchWindow(*currentSearchWindow, streamSignature);
+                    workWithSearchInfo(*currentSearchWindow, streamSignature);
                 } else {
                     if (diff[i] < c_2) {
                         searchInfoList.emplace_back(
@@ -62,13 +62,13 @@ void PartsSearcher::startSearching() {
         }
         for (auto &curSearchInfo:searchInfoList) {
             if (!curSearchInfo.isWorkWith) {
-                workWithSearchWindow(curSearchInfo, streamSignature);
+                workWithSearchInfo(curSearchInfo, streamSignature);
             }
         }
     }
 }
 
-void PartsSearcher::workWithSearchWindow(SearchInfo &currentSearchInfo, CSignature *streamSign) {
+void PartsSearcher::workWithSearchInfo(SearchInfo &currentSearchInfo, CSignature *streamSign) {
     currentSearchInfo.isWorkWith = true;
     auto curDiff = streamSign->difference(
             *currentSearchInfo.videoPart->parent->getSignatureByIndex(currentSearchInfo.sigIndex));
@@ -76,13 +76,14 @@ void PartsSearcher::workWithSearchWindow(SearchInfo &currentSearchInfo, CSignatu
         //считаем что данный кадр и есть искомый.
         currentSearchInfo.sigIndex += 1;
     } else {
-        auto isFind = checkFramesInWindow(
-                currentSearchInfo,streamSign);
+        auto isFind = checkSignInWindow(
+                currentSearchInfo, streamSign);
         if (isFind) {
             //errorVector.pushback(currentIndex); TODO: подумать про вектор ошибок и как с ними раотать
             currentSearchInfo.sigIndex += 1;
         } else {
             searchInfoList.remove(currentSearchInfo);
+            return;
         }
     }
     if (currentSearchInfo.sigIndex == currentSearchInfo.videoPart->lastSignatureIndex) {
@@ -105,7 +106,7 @@ void PartsSearcher::workWithSearchWindow(SearchInfo &currentSearchInfo, CSignatu
 
 }
 
-bool PartsSearcher::checkFramesInWindow(SearchInfo &currentSearchInfo, CSignature *streamSig) {
+bool PartsSearcher::checkSignInWindow(SearchInfo &currentSearchInfo, CSignature *streamSig) {
     size_t leftIndex = currentSearchInfo.sigIndex - currentSearchInfo.searchWindow.leftLimit;
     size_t rightIndex = currentSearchInfo.sigIndex + currentSearchInfo.searchWindow.rightLimit;
     std::vector<size_t> matchedSignatures;

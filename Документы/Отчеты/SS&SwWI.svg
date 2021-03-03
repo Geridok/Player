@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1726" height="2277" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--WillInclude_umdx-->
+<path d="M 692.48 265.01 C 708.41 272.03 708.41 283.42 692.48 290.44 C 676.55 297.46 650.72 297.46 634.79 290.44 C 618.86 283.42 618.86 272.03 634.79 265.01 C 650.72 257.99 676.55 257.99 692.48 265.01" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="white"  />
+
+<text x="650.96" y="282.47" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Start</text>
+<path d="M 459.42 154.53 L 867.85 154.53 L 867.85 212.24 L 459.42 212.24 Z M 459.42 154.53" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="476.51" y="188.12" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Алгоритм сравнения кадра из потока видео с массивом VideoPart</text>
+<path d="M 622.72 343.37 L 704.55 343.37 L 756.63 355.83 L 756.63 387.87 L 570.64 387.87 L 570.64 355.83 Z M 622.72 343.37" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="white"  />
+
+<text x="633.97" y="362.86" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" font-weight="bold" >MainWhile</text>
+<text x="648.63" y="377.86" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" font-weight="bold" >while</text>
+<text x="607.29" y="392.86" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" font-weight="bold" > (!stream.isEmpty())</text>
+<path d="M 663.63 295.70 L 663.63 343.37" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 663.63 324.77 L 663.63 343.37 M 662.25 336.87 L 663.63 343.37 L 665.02 336.87" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 799.50 227.73 C 807.00 227.73 814.50 240.23 814.50 252.73 L 814.50 302.73 C 814.50 315.23 807.00 327.73 799.50 327.73 M 799.50 227.73 Z M 799.50 227.73" transform="rotate(180.00,807.00,277.73)" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 704.42 277.73 L 800.71 277.03" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 782.11 277.17 L 800.71 277.03 M 794.22 278.46 L 800.71 277.03 L 794.20 275.70" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="806.16" y="252.47" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Данная функция является StateMachine. Берет кадр из потока и начинает свою</text>
+<text x="806.16" y="267.47" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > работу, пока в потоке есть кадры.</text>
+<text x="806.16" y="282.47" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Поток видео: stream,</text>
+<text x="806.16" y="297.47" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Сигнатура текущего кадра stream: streamSignature,</text>
+<text x="806.16" y="312.47" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >SearchInfoList – лист из SearchInfo;</text>
+<path d="M 589.69 409.42 L 737.58 409.42 L 737.58 436.71 L 589.69 436.71 Z M 589.69 409.42" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="white"  />
+
+<text x="595.54" y="427.81" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >partsAndDiff = base.find()</text>
+<path d="M 737.58 423.07 L 840.58 454.40" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 822.78 448.99 L 840.58 454.40 M 833.96 453.83 L 840.58 454.40 L 834.76 451.19" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="846.38" y="437.34" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Данная функция выполняет поиск</text>
+<text x="846.38" y="452.34" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > совпадающих сигнатур в структуре</text>
+<text x="846.38" y="467.34" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > хранения и находит сопадающие</text>
+<text x="846.38" y="482.34" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > части</text>
+<path d="M 841.04 405.10 C 848.57 405.10 856.11 417.60 856.11 430.10 L 856.11 480.10 C 856.11 492.60 848.57 505.10 841.04 505.10 M 841.04 405.10 Z M 841.04 405.10" transform="rotate(180.00,848.57,455.10)" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 542.60 595.06 L 662.10 565.69 L 781.60 595.06 L 662.10 624.42 Z M 542.60 595.06" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="606.95" y="592.30" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Если совпадающие</text>
+<text x="631.17" y="607.30" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > сигнатуры найдены</text>
+<path d="M 781.60 595.06 L 842.03 595.06" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 842.03 595.06 L 860.63 595.06 M 854.13 596.44 L 860.63 595.06 L 854.13 593.67" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="807.94" y="599.80" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Нет</text>
+<path d="M 860.63 570.06 L 960.63 570.06 L 960.63 620.06 L 860.63 620.06 Z M 860.63 570.06" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="884.82" y="599.80" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Выходим</text>
+<path d="M 662.10 624.42 L 662.10 678.43" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 678.43 L 662.10 697.03 M 660.72 690.53 L 662.10 697.03 L 663.48 690.53" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="653.78" y="665.47" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Да</text>
+<path d="M 538.36 744.12 L 662.10 697.03 L 785.84 744.12 L 662.10 791.21 Z M 538.36 744.12" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="592.98" y="741.36" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Есть ли уже, найденные</text>
+<text x="619.07" y="756.36" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > части в нашем SearchInfoList</text>
+<path d="M 785.84 744.12 L 841.70 744.12" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 841.70 744.12 L 860.30 744.12 M 853.80 745.50 L 860.30 744.12 L 853.80 742.74" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="815.53" y="749.65" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Да</text>
+<path d="M 866.32 694.12 L 1506.40 694.12 L 1506.40 735.56 L 866.32 735.56 Z M 930.32 694.12 L 1442.39 694.12 L 1442.39 735.56 L 930.32 735.56 Z M 930.32 694.12" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="955.93" y="713.72" font-family="Courier" font-size="13.00px" fill="black" opacity="1.00" >workWithSearchWindow(*currentSearchWindow, streamSignature);</text>
+<path d="M 662.10 791.21 L 662.10 866.82" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 866.82 L 662.10 885.42 M 660.72 878.92 L 662.10 885.42 L 663.48 878.92" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="648.93" y="843.05" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Нет</text>
+<path d="M 511.23 950.72 L 662.10 885.42 L 812.97 950.72 L 662.10 1016.02 Z M 511.23 950.72" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="554.53" y="947.96" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Отличие сигнатуры найденной в базе</text>
+<text x="593.40" y="962.96" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > и streamSignature &lt; C_2</text>
+<path d="M 812.97 950.72 L 881.29 950.72" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 881.29 950.72 L 899.89 950.72 M 893.39 952.10 L 899.89 950.72 L 893.39 949.34" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="848.89" y="956.39" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Да</text>
+<path d="M 899.89 907.39 L 1051.64 907.39 L 1051.64 994.05 L 899.89 994.05 Z M 899.89 907.39" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="914.94" y="940.46" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Создаем SearchInfo и</text>
+<text x="925.08" y="955.46" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > добавляем в наш</text>
+<text x="936.75" y="970.46" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > searchInfoList</text>
+<path d="M 662.10 1016.02 L 662.10 1103.67" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1103.67 L 662.10 1122.27 M 660.72 1115.77 L 662.10 1122.27 L 663.48 1115.77" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="648.93" y="1073.88" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Нет</text>
+<path d="M 511.23 1187.57 L 662.10 1122.27 L 812.97 1187.57 L 662.10 1252.87 Z M 511.23 1187.57" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="554.53" y="1184.81" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Отличие сигнатуры найденной в базе</text>
+<text x="593.40" y="1199.81" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > и streamSignature &lt; C_3</text>
+<path d="M 812.97 1187.57 L 886.02 1187.57" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 886.02 1187.57 L 904.62 1187.57 M 898.12 1188.95 L 904.62 1187.57 L 898.12 1186.19" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="845.62" y="1192.31" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Нет</text>
+<path d="M 904.62 1144.24 L 1056.37 1144.24 L 1056.37 1230.90 L 904.62 1230.90 Z M 904.62 1144.24" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="954.69" y="1192.31" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Выходим</text>
+<path d="M 662.10 1252.87 L 662.10 1312.83" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1312.83 L 662.10 1331.43 M 660.72 1324.93 L 662.10 1331.43 L 663.48 1324.93" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="653.72" y="1296.89" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Да</text>
+<path d="M 428.57 1331.43 L 895.63 1331.43 L 895.63 1375.25 L 428.57 1375.25 Z M 475.28 1331.43 L 848.92 1331.43 L 848.92 1375.25 L 475.28 1375.25 Z M 475.28 1331.43" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="483.84" y="1358.08" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >isDefined = defineSearchWindow(newSearchInfo,streamSignature)</text>
+<path d="M 511.23 1483.59 L 662.10 1418.29 L 812.97 1483.59 L 662.10 1548.89 Z M 511.23 1483.59" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="552.37" y="1488.33" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Если удалось определить окно поиска</text>
+<path d="M 662.10 1548.89 L 662.10 1590.15" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1590.15 L 662.10 1608.75 M 660.72 1602.25 L 662.10 1608.75 L 663.48 1602.25" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="653.92" y="1583.56" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Да</text>
+<path d="M 580.39 1608.75 L 743.81 1608.75 L 743.81 1695.41 L 580.39 1695.41 Z M 580.39 1608.75" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="594.83" y="1649.32" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Добавляем SearchInfo в</text>
+<text x="610.07" y="1664.32" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > наш searchInfoList</text>
+<path d="M 812.97 1483.59 L 890.96 1483.59" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 890.96 1483.59 L 909.56 1483.59 M 903.06 1484.97 L 909.56 1483.59 L 903.06 1482.21" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="848.10" y="1488.33" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Нет</text>
+<path d="M 909.56 1440.26 L 1061.31 1440.26 L 1061.31 1526.92 L 909.56 1526.92 Z M 909.56 1440.26" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="959.64" y="1488.33" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Выходим</text>
+<path d="M 622.18 1786.49 L 702.02 1786.49 L 752.83 1770.02 L 752.83 1727.67 L 571.38 1727.67 L 571.38 1770.02 L 622.18 1786.49 Z M 622.18 1786.49" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="623.76" y="1761.82" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" font-weight="bold" >Окончание If</text>
+<path d="M 960.63 595.06 L 1570.71 595.06 L 1570.71 1736.85" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 1570.71 1736.85 L 1570.71 1755.45 M 1569.33 1748.95 L 1570.71 1755.45 L 1572.09 1748.95" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 1056.37 1187.57 L 1570.38 1187.57" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 1551.78 1187.57 L 1570.38 1187.57 M 1563.88 1188.95 L 1570.38 1187.57 L 1563.88 1186.19" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 1061.31 1483.59 L 1570.38 1483.59" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 1551.78 1483.59 L 1570.38 1483.59 M 1563.88 1484.97 L 1570.38 1483.59 L 1563.88 1482.21" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 1570.71 1755.45 L 756.90 1755.45" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 775.50 1755.45 L 756.90 1755.45 M 763.40 1754.06 L 756.90 1755.45 L 763.40 1756.83" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 610.97 1808.53 L 725.08 1808.53 L 797.69 1820.79 L 797.69 1852.31 L 538.36 1852.31 L 538.36 1820.79 Z M 610.97 1808.53" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="593.60" y="1835.16" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" font-weight="bold" >For по всем элементам в SearchInfoList</text>
+<path d="M 516.52 1912.31 L 662.10 1879.11 L 807.67 1912.31 L 662.10 1945.50 Z M 516.52 1912.31" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="587.28" y="1909.55" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Если уже работали с этим</text>
+<text x="622.08" y="1924.55" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" > SearchInfoList</text>
+<path d="M 342.06 1998.32 L 982.14 1998.32 L 982.14 2055.38 L 342.06 2055.38 Z M 406.07 1998.32 L 918.13 1998.32 L 918.13 2055.38 L 406.07 2055.38 Z M 406.07 1998.32" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="428.06" y="2027.20" font-family="Courier" font-size="13.00px" fill="black" opacity="1.00" >workWithSearchWindow(*currentSearchWindow, streamSignature);</text>
+<path d="M 807.67 1912.31 L 859.67 1912.31 L 859.67 1830.42 L 816.29 1830.42" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 816.29 1830.42 L 797.69 1830.42 M 804.19 1829.04 L 797.69 1830.42 L 804.19 1831.80" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="827.19" y="1881.13" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Да</text>
+<path d="M 662.10 1945.50 L 662.10 1979.72" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1979.72 L 662.10 1998.32 M 660.72 1991.82 L 662.10 1998.32 L 663.48 1991.82" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="651.43" y="1976.65" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >Нет</text>
+<path d="M 342.06 2026.85 L 287.06 2026.85 L 287.06 1830.42 L 519.76 1830.42" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 519.76 1830.42 L 538.36 1830.42 M 531.86 1831.80 L 538.36 1830.42 L 531.86 1829.04" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 621.44 2155.23 L 701.28 2155.23 L 752.08 2138.76 L 752.08 2096.41 L 570.64 2096.41 L 570.64 2138.76 L 621.44 2155.23 Z M 621.44 2155.23" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="617.02" y="2130.56" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" font-weight="bold" >Окончание For</text>
+<path d="M 570.64 2125.82 L 218.32 2125.82 L 218.32 365.62 L 552.04 365.62" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 552.04 365.62 L 570.64 365.62 M 564.14 367.00 L 570.64 365.62 L 564.14 364.24" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 623.71 488.32 L 705.55 488.32 L 757.62 500.78 L 757.62 532.83 L 571.63 532.83 L 571.63 500.78 Z M 623.71 488.32" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="white"  />
+
+<text x="637.37" y="515.31" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" font-weight="bold" >Начало If</text>
+<path d="M 663.63 387.87 L 663.63 398.65" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 663.63 398.65 L 663.63 409.42 M 662.25 402.92 L 663.63 409.42 L 665.02 402.92" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 663.63 436.71 L 664.27 469.72" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 664.27 469.72 L 664.63 488.32 M 663.12 481.85 L 664.63 488.32 L 665.88 481.79" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 664.63 532.83 L 663.36 549.26" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 663.36 549.26 L 662.10 565.69 M 661.22 559.10 L 662.10 565.69 L 663.98 559.32" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1375.25 L 662.10 1399.69" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1399.69 L 662.10 1418.29 M 660.72 1411.79 L 662.10 1418.29 L 663.48 1411.79" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1695.41 L 662.10 1711.54" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1711.54 L 662.10 1727.67 M 660.72 1721.17 L 662.10 1727.67 L 663.48 1721.17" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 662.10 1786.49 L 665.06 1797.51" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 665.06 1797.51 L 668.02 1808.53 M 665.00 1802.62 L 668.02 1808.53 L 667.67 1801.90" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 877.37 351.48 C 889.08 359.29 889.08 371.95 877.37 379.76 C 865.65 387.57 846.66 387.57 834.94 379.76 C 823.23 371.95 823.23 359.29 834.94 351.48 C 846.66 343.67 865.65 343.67 877.37 351.48" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<text x="845.48" y="370.36" font-family="Helvetica" font-size="12.00px" fill="black" opacity="1.00" >End</text>
+<path d="M 756.63 365.62 L 807.56 365.62" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+<path d="M 807.56 365.62 L 826.16 365.62 M 819.66 367.00 L 826.16 365.62 L 819.66 364.24" stroke-width="1.00" stroke="black" stroke-linecap="round" stroke-linejoin="round" fill="none"  />
+
+
+</svg>
+<!--OldSVGSize:23065 -->
+<!--Data_umdx_bIncluded:UEsDBBQAAAAIAJwCZFI2LVEHCwIAAAkGAAAMAAAAX2dlbmVyYWwuaW5phZTbcpswEIbv/TAexMGHZnyRhPHEnaTxBE+S5kajymujRkiMJHzo01c44AIWNVyA9H+7Wv6VWEuagDFMbGeFYAZzEFuTYiOX7AD8Zgnv6PnGnwyDcBRG42rcJAXJIAZNK+kehGEZGAW6B66madbU1zmrhiPPawo6lfuFiIGyjPA5gKlEB0TTJVHmDLvAqoyEEl7XgYbe6erDcGKT1+w31MRyZVfSTArXUgoyuYOVIoxbcz9AyTpJ9dwqtm7k9jrT+PbA9HtPzEn86RIFyR3TS8VE17lyfm6bvH5LQXxImfWkW8myp6Ac4U/kt1QJ+wPDg9vNNnT8D8SEhQzk50y+Uz061MTYtuPnzUaDOYd7l2u0uGM/dy+5rL82QJMg8CfjUb3189LJJdnC6pgDTmXXlra+u7DtpH8Zih/c0ZX66o59ImrLBH50199EXq4jq+vInRtZK7J/ZbDHc8Z507HQn4bT0difRl0yMUp+QpP1owuoTPdADE0tbdELkOly/78U/OxOvV9/lULp/J0C8qk73hHO5f62MNJxQloatiPMyRGU7i7wyAR8L7Jcz6WtTQig5t/hryl9OjK2PCIoxEzXxy5s+zfYMA62xeXvYxZ53oAWStnGJ6n9xy3iGSViRzT2kRfYe4rCKMRkE0yxhwe6ZH4U2cz/el3E3nV+EaM2hLwIoRFGm8kEB3jwF1BLAwQUAAAACACcAmRSfM+BY1YWAADi6AAADAAAADFfU2hlZXQxLnR4dO1da3PbOJb9nl/hrf6wPVPdKODivVpXTSbpR6bS6VQn3T1b5SoVxYetHUfyyvIm2a7+73shiSRAQrQlS7YccR6RRYAUSOIenHvuBTAEyoDy4a8/vR6+e/XDm2fzz1f5qXg2ST7kp3liU53JIX2WvLtIrvI3Nx9OLaX8WTHDYjKdjc/HE/LpVAEQI7iWNCz5fArSEi0sFWpVcj3+v5x8HGfzi1PDiDRUGvCLLvLx+cX8lEtiJQfJniWT88v8lBK6+M+zWTIfT+uvyevxJH+ZXF+crv52FzllVfHL6c3oMncFZYUX08vpDNslnyXfjy8v3+PtgitzX5ZlAqywSoPFKu9+fzGtD6hn4+vfxtdjvOQptuz1NP3X2+m1O/vy6iJZXOVyfPXP8o//cn+8ff2P6Xjiqr99/SK5Wv7xOx5ZtecfNx9G7u/n83mSXuQZYI3R9NP7/NP89I+z2bxgZ8nkerz4J706ZyDhLJ2m0wSLQGr1xz9//fnNDy/x/8M3fy5L5njudZpcjifndHnk6jKZF9PZB/rHWTGdzOejy7OCnhXXH8fX12dFepHMrvM5Pfkxv/zffD5Ok8GfwWX/wKvgk8HTBmczbKKUZ+ezPJ+4P0aXNzl+Lgro8jBdHKSti/z1LP90lUyyPKsuNzhLr8/zST4bp7Pz0VlKl/9rnHp2lcyys/knqSj+y7DDug9l3AeAWHwY6j44X1ThdlFFiEUVSRdV8Gz3odiiCr5PurjueDZJ5jez5PLsf1J3YO46YD4pknQ+ndHwFoJGLZ4giJOztICTd3M8889nyY/T2fPL8fnihf+W13//PsN3j6/5/acf8I9v6x76/tOP+S91hx5G7ZGt7HHEOOT5kIf2yJr2KNDqBNMaO3nDHpkURIK2MXsU1BCBNidVxCClJppRDvRhDPJb1ltkb5H3ssizG2z4DcNfOnEfhi8+tFx+U8sPs/xYVrGrmuJk+Wn9OhqWH2J5cHkZrf1vy8uglazOh+BE1bia/8varr5qv3Vle1TjckFDqH91XZ1f3kF5R15LyvuywQVE8Fv4CH4bZ/n07V5RrYK1RCrDhtKDtRbHkJoSxbGL6CamccEJV1Jz08Y0ZpBIWCyNkQyBWIg3LqAnGY8Bad/+fXqZDc7wt3vYuy/sjTzg+ykZT36/GF/mjVrsbIS2Hhz86KqdfP1v1/NZnnwg4+vvPlzNP3/9l7/cZvNsW5sHU9p8CoXKhsw3+haRUYqj0QvKecuxsJJoCmB1xOjLJkRMXhO8phAP5Fc8Oo1hoc0ns9n046vJW+Yqrf6ujr9b3CIv7/GKDd9Phz+P/jtP58M3oTt4Ba2yCsOD8/AuXqGdfTpljZOqArh/T8um87cJvvfRi8vpdZ4N6FfzAR18GpS9R/DB50HdYQZYDF4xd8X1IDJImSsDIrTk3OJXV0qJ4RateZBCWApB6bk7uWyY+/bZ/wZBGXhlX902RKYqNTQfMu2Zi2zZi7YWhzShFWvZCyCBB6l0zF7keoNhtLaJhcUw86XbTGOc3DcQpsZYVQyZ7QJCTQURIDiH1ovVmlDOtI2wH6sIGGNE9MWGr/VLf6kPBoQnawBQrcE/uj/8qzuNwz+9AgAo8Q+JCvr02HXK4mU3WuCfV+YwzC+FsBSC0p3jX2kkliXGDFniGQltGomhijApWRMXnQwJ69GvRriI7EH3ayZexz8kazk0V2ELN+AunL/Bo7O8mCcjpOMRzu/+KYvPZuNvV6R9G2mC1tJE6JfLQFqAQEywyzqWBVVXB30poDzDffqOPQ8O6kBgsNWJ7+b4tn7CF489gSwKBQuUBdM4v1PpuKfEYcrL+0+EWl9saZQ122Xb2gaj5dVDXYdHmoVP+5tIo9tKzJ3vTJ8ET9N6VRGHbteNrD0hoQtX9iUpO3/9LprRf5ws/cBv1vyCDs6O9FbvuUW0rlVh+XtBh7baL6tFulsfiLv4stVl69/h6On86LxxG+/yZJZevJoU09fj6/nJ2b9bVRniShw0vj3UvajuwPU1Br6HTPeh9WfaUJBDNuoa8qSxRBlrkD02hjxBrRv8WRWt84c8dIMdLwQTGfLQUQAjcWzvVbEnMtQdpeJV613uxOvnk+zluChO/nj5/Nfh359jtT9PRsl1TorxJPv6Vj1ra2st3bg045SrVFJd6FRp0+nMcU2kNiBaUrYA9DqUQouO8VQg1loubCxezgjnUgh5nO7c+Wx6c/XmFMdQlo+sGnItlsfeMnze1d2Xhz43D0G7FrRr8XYt3q4l2rVEu5Zs15J+rXs6qPXgcdgeamUJ6ILWnX9w7juKnwdME6spgk7lugqK52lplTtPoptLgXGxdF3rMud++qUQlkJQir/J0Uu06CUy96PCEk4Vgv7SqfXKFpf1SiEsBb/0Fsc2TaViFsAAAodzAju8W6EIN2jkraC+4PiwLEJsRAICKglIgwDce7drhvxu8OCCKCE4cA89QLbhw5MRagBpVuSxig5DtGyDSPOXRaTebTDy+HSmO763jAH23v2m3n3pylkb80+5d5m2yx87I3B8Snex/KoC51FHnLHydsB35sqsCh5ebRP3MfSvfW+5cohZ8Kyi/ufK6bY84vffKZEjrkMEioEOHmRDgCif8qaPzrW8HcStOpgN2tN4PPTkNg9169BFGZSyDOFJc5YbPtKJsp2hKSPwVzgOvKbtqcq1w5cLTWnBRCwlrQ9N3TJyaYKPDmmDN3JFRimsiI6FQA5kvJErMkq1K65hv80f3ob+7ifoxviy5wZPrINzdXhqHZ2WM4FElhsZk1davfYYSde696NW2lcONNP5EDrDPVIAUXgV2Xo5UkmirEv9ixBibtCN1kzoGCE2RHN8reZI3Ohe/Hrq4ldFNmVAOHhIXHZC5EoetQ2RW3HVSFXDgt8PeBiesbdENF5CTZJJroYw6lTs3FwVawQVLaixOA4g3rCIYqetC4sDl7FhAEcWg88ZYeg4oGa3CRj1ABFJRctTg17zENINhS4megR8HAS8N/zJppO7g/DcFXbqOQutf3WstntYHXM82ihKFJoQt+WxAB+wM74cz7DHjaeuHdgH66/8GfaZ/P1SGSyGL7/7/vmvr98PX7569374/S8//zR8+/yX7968P5WV/uO6GvZc97vfLppsja0Prqg0IvktUcbaVrqkx/rGmvCn6Vr4e9TEmkODv55pHQLO7IRpga+8dalARtxKX7aOO1b0pdCJgCFk3Wn0gM6qNbyVGKesJhSMmwPTst8O60X/Cptk6LH4SQ9IXooUgMohFJsn0veg8nRBpYoV7AAxKuLi2X1FXBS4pGBAvlATl2Y9CJEhIC4QEhd6R+IiVIS4LFoMyvi8hbkYMDbmFoWoNpMuhYgbwqWxoqU5d+Ee+mREGKZVTHS2gjD02+ixuG0Hx1v2E0/sYSiiIjXzUkNRaSXu6CrI9s2G6k4t8tw/1tWeELlo5fLcKoAYalRhm4Sf3ekyRPetPBlILUd00lZSaRV060+SoP+pWUt/0gIBiRkrI3EIjUgvFcJfh/7Ej8UB2y2F81javfOretnpSUPmXpibZ/AVcytNXahQcgKrFfKRirl5kLALyWlXzK3MGihchK0wQ+FHXk1bclKEM8Wai9s46rYe8ZTAhhllWQzyBCOCK2kfKLH90RHvkajbh2mWzyYeyLyY3szG+ew4IWZzfFFLfPk4nf3r9/H8YklK8N1m049f/zW9mc3yydw/+E1z3stfBuHEl3VSON2RBpVIVmA3zpgdGWNsJ5FZeZratuYxa8sIUCt0ZL7Ksh3VpPaGP4ZnWdUv6LAFjTmJsBepc7dcH9J7wbjkqpehvlikecgYWikxSZ/Q1CbflKIcQFSExiAZEswKLnYiRe0shrbSoloW06VIMbxlsFS1kvi9m2wnlFHmMuqEjGcSUKIoMHyKxwGBvST1VCBpF/6VFIHUE0zUDaeCP3x+kgnmXGPNMr9q+cmDBCsbNrKlWTm1q0nlTv7z5MUQ9q1EpSnPkkKmuUhVXnQuyGUYuKlYElor/VpJCfaAusRf6VcRC8zyaBZ3mQh1LG7ZThlcm621CF1hbCGybKhpr0sdEW7uR5fy7L+icZ7l17qUtQRdQSFVTeP8eoekS61kqdpMujKh6vtq4h/VhFtqeQT/mHT8zWI/iQAggqOSlpljEeJ7+nZMMCSDeYYlCVIBM6oicDFGVAflokG+agWXVVSyzMBSMQrWsRRSuejz2lhhlK09aMAwyYFlVirFC5khZGyns2FvAQJ4ERlZC60j5YszIpUUthfa9kPTVK5omiiTg+ZpMRr1utsTQcknobtVetpyEihD7gR4R6pbePOx4hCVt5bNbKW8dSJiL7313O0polIvve1CeuN753RFPpJpzqAwqbCjTk63XntjzGhkZ1qISPDAMvQvKbex6Gkvvt2H1bUpW2Qu4kjrkUlGmXIzQbNegnsi+HnYrC4mw/kgULE69DqIAkRb5rM6r+JBzkls2EwHq/Pur4WJQhDg2kWce0HuSZG6owScg5uaeP+VFUShqcoMF4pJS7eUqzh3aZuASLCRXCUtAaGEOhYjfmhiU9gRusyjoe4TxI4KYfY5TzEUqdyeHUYZyektIpWHEIc0U7HKd68tpSPfXYAhUnPJWotZdSKgUJogDZQy5t0Jjs6dYKqfq9jDzNOAmfH1y7zA15kF67hni2NBIvwk/1gHBr9pJsDvbdWFle7MpEQfJbd5kpgUuNlSdxbMELCMA+t1596yv2zLvtM6dTYUfCGoo7wT6znJwcq64e5EDd04lK9p9DLhUs3qTksl35EP7cKdSmiRUwUFy0y+pTulqEFcURDbCa3DndKaWKmF7Bd82cKdag0Xa3RiBA50zBUwm/RO1TFh4sM5VVIYYtweMuIWp8rDiYNyqjyJ2DeXzi2yKOFGadMOm3WBIVOcCECWFSNgvUTcx/2/eDzaKocyElmvHbXtVml5/MxL7YL0GbYMa+pMqS2j9MJwIi0IFd+qWVrBo9v0rKL0zPS5l/thX4JblQnO9cggs4Y+Sv9U0O4JRulLEKhXbHFRbEukEsZQj4F5aHGIUfqWzXRG6av7a2GioAQUGB3d/KWP0h8uBTtKwPmCovSwtONMZpoqLUFnTCWBrtR2pTQjXBt0GFt2rEETpaxRES0biQsRQnMT2w9HokMKoOmxcJuGHac31/PpB7yV5UHHaK9Pvd0vPw/KWxxkAxh85YpAri2S68/S685i63/LK6oukA1Yq0jStUWw/qzqt2ijhe0iuf4sWH9Wx2/FWshbRdV9tYu0d9bjo3Hv8W4AyaP1ue5lBED5rmhj7dFW5vurYgconbgNct/kH09/GijgRDM1YMiZiGXib68HmiIZlBAcksItboyHhMsBUMEhygh6jXhIauSgjMYPVSe2fvHF4G+RdnR7yQV2b0Mt1ukmg2s3k9DcZXworSJTqBVzK/sxsLHdrxkFIFLbRZbZUYwiO/WQ/Q1z7r2aqby/KVQOlG1sqOJvvMK89cuZ24ZEOy5lPAdKo8sjhOKye70BT8Km20nYwTF/E8O3bJiNr/0D0DzAhslleKx7n/miEIUVCVbqjAAioCmkatRZxLrJIrGVWqTbupBxBtGlWqpm9za2uY01J4Ic8r7sXvdxrLCeMFBuwL6wOG64Gx68CkAXW7D7pW6z9KAcGuUQli82W6+Y1mKvde8bBGXgla3baL02HJkzW2ClottwFPo4TNQbprf1WyEjhkMtocoy2RvObg2nrc0etuFU3cfZRa3hrTGcukvFDccvjxmOV74/w9Ep5WIIjHYuUY+IYSkTkZyTciCOLe1q8N0jaRQipg0c2R5h97Cb/XXoklqJRYeuX2XZoev33ih33dErXHRnvxjCYgiLd92by2xsRikwkTHszszrzrwlda3dOoYZaojkwsa6M0hLOFjOYlkDAt0pzfTROCmHJlkvRZLu1IFeQ9lcQ/l+OmvH6L3Ifp1AGaQQ2GbuwCKjgPnZmnVhewWA1UICpSrjrd/UbuyGW7vcIcjXnR9OqcqF1Agy0J0brogEtELeBhltibsbEwMZywiCpmGxSR9u3wSLTLpPDe9Tk546yGyZPl5lgQdJ4eBnM60E3gaGtHZN9yGp3mzqTrlOe81LKtmMocko44XlWS5GI8a7ZphxAU4447w9EcVaJDvMRnfx7dxSRWp0erlWPdj0W6ocNo7sdVcV37ZhR7uqIOzo3NB8CKpzb25tNVHGQIRDWGUIcOZSedr5hsQaJaMMwjBijOSgjsSod5tt6FO/tlQVuJ+bqVbqALhNjzcHNcXDULR9LbT2NlVhlgHhVDF/iocHEnV8zHBKBODY3p1gyO4YH5MQSzBki0wJY4QfIXP5zGA0tzsNkdXAafHaaIHqLpuiRybJ4TPhyIckE2snyemYzO8WLGBCsWNhQw8JnC2m20+QOx707MzS3tE8OXRxfBAVkuAd2ltXyPVcp53Mk7ObJhnchoU5Mg0+BM26SGSXb9hBIrEQhxpQ4cokZdATCwXHd9evLbkFHLbxbhsu6baPXTdlZXdpOl7vqSwIsFsQg0Mo9Zbv8YIqt9MQvnaeQzcNic1zeLA0nTKrGjFrxEYjnWtIhcy6J6hqShRH5Gwt/QPU2RDVImp8fVZ1n1XdZ1X3WdUHQtt2nVX9/XTWp1UvhhKghRU4zGu+3TAiqVvKwGoamZvTseYL04oSJLj8aEaRHTu0DQoQWfVllEhl2FA+Kn3zOk5N3xBgiWHG5eLX9K1RcSHlKEmc1iTtbthbTES6E3vjlDrNZqG+bM/fysCasLLA/wqXrUtZ1p0qpBk+FkSw1oQGYZxzaCyNxNWYkQRtS8mY7yQEDpJaPNSy/PSw2Fs/7j/5cT9YM6Qx0lcR+N1MnLpt8BzRUSGGkOluMZijDQvKW1E0iUCoDLq4m60/DQyJBbVwJBa827kS9bDYHjIzbSjIIdtig7TdDZled6mGTG40MZozE6xXHNZzI5egFtkYuvT8MBVDGBmbp2gwZkuD0Th4OUVUxQxm7ZAncRClFi/ZG8zmBuMZRXtxmyaVOTC7EVwRjUipgyXp3LYeWhlv+2CPTO1tL7p72U1meWHQbpI7RB0Nb21YohbsWkkby/gkErSJrgW8mDMrlLG93Ww+t6hlGpGFOYFmOh/CFkty7tJuQntYTIR1bx4Ul6wVonK9q7Ib6Tw0y5D/Hajd5GjVI7Sb0XbReibdK5bY6zaTNwSeheT4WHysnRqOv/tHOy7VWnDtMQ0nsggq13KxOYy2twR3vQXaD9R0sPtyNJ10S9MxnBNgUtnI6luuESAVj485oISgPVfbciJ4sNJzy4BaSzJtaEBuouZ+LUhZSQSVQurQgrBLculxNn9ZqMN0dvJMaIkWdGuq2OrWWukRIFwKhKER1iaJBQYitmIJ4EN1TmA/+GxuQW3z2CY1Ah5o9PFNYmE72igiLCJrwNsMwXqKSj8xop5nut8luDezHbGyHUY5EyM5xNHUsx1LaUsgR5ZKkBQw2fJ5uFhGD2Krxqku7nZkM8MPTSDvtfFNUxm/m2R7m3XKK4sUjNoCLbJzhWo36z4er+oKFCvrpqqCjWl3q/b1iX47FrsDjN14TerdjWNej6nlbi/wWw5jHtC3AsRNBrjlMsabj2L/D1BLAwQUAAAACACcAmRSvV/7mf0AAACMAQAADAAAADFfU2hlZXQxLmluaWWQTW7DIBBG95wiJ7AAY7tesGrSGCmpIjmq224QxiRGwSBh3Ka3r3/ahRVmAfNmFnyvb5UKbEulsF+i5xjBeKwckYRwcYlzDjnop51X0SlaBuFDqYSXrbZXcPl0rqMwwijFEIN6avmLDpW2jfumENRC3vbeDbZ5dsZ5SnBO8jTDeQre2K7iFdueC4oynEZwPgsudmxfnCnGWfbPe+mdMSfXv1MUP8CP8RN/bLA6cKPsNbQ8uJO+K0PxUxSTlCTZalpKYRRdITuFlN0D48wejxSIg7ZqSYKTBBjxo/zobr7X6mqUTObmyWzuML02aCFlO9pBQA5+xsw26j7a+gVQSwMEFAAAAAgAnAJkUvjLmNjxBAAAch4AAA8AAABwcmludGluZm8ucGxpc3TlWc9vG0UUnkmbNknbxEnaAi0Gx/GBAvY6blw7wXHqxAlYJBuTdULaUqyxd+Jsut5d7Y4J5rSgqpeICydABCEKqBwQJ6QeOIAAIYQq1BRxAIQQIIQQfwSz/rlJvImDKtU2tmTPzs68+d73vZk3u5NSREEjXu/3sO3AwfZDh7uWXC9gVRNk6YILqekVgV4lXERWllxyahWnidYH4LV3krYelnsa5zEfKTW63dGZUGWZ6PBjW9+Ro/1nHn3scbeH8Q75zg4/MT654JJyonjnWHePrbfveZaLz8ZRBk/LahaRRVdaRJr2HMtFCFGFVI5gTe/Re/W2O8dPdJ98+JFnWc5zBee1i/S/hOLGffc/cOr0g/aH9AP6Qb1dP6Qf1jv0Tr3rhmNgYHCQ/uhH9KP0e4x+i6XupO0kyz0lq8JLskSQKOYnsUSwivnLLDcvZFbILFIzgkRxzODl0kXSdqLSB4kUsyAhQtlJ2o6z3CJWiZC2rK4OcInlErJStEidn5AJkbPFy45BUPrYwKb/XCB4sciGhLJ4qVjEWtLWz3KzOYJSIo4KaWMkpOavB0ZGKdhqxRLLzRXo2Qx1j4UN1nhE0Fzv6Y3Q+ItZ0VFSdsw55PE6HVhKy7wgZcacC4lpd9A5Hu4KDUTnJhMX4lOOQlg44gsTM7FJh9PNMBFFETHDRBNRR3wmxiUc1AbDTLFOh3OFEGWUYdbW1jzIaOVJy1mjocbEVVmhZORnqDE37eDhCe+kwxStb4FDa3nqSLirM0SlDlMTJWOKKkjEU40WT3y2quE81kKM0Z52K3Wv3Z8KcgUTT1rFiMhquU9nSKMBJ2VMzVflVLFtiCnd28OkQHA2oqooXzWKjEujVAVlYWNvt4yeFLQYDvhCTKFgba2ESCOI4GkRZcw26H2cwWrYG2LKxQJApkIbU4Zdqdsb8pwq0BAvhH7r6FDDKTODQ1sZbBQpOLriUJpaR4ZtDlUmwlADzoPykt9S61ENpxp7NSoDbrmpYOFYo00JLZdKFMdREM37SUFalpNlzmppQXeB8WjcaDsp85ilW54qVRV+9qNavbLtUzezcGbl9vTChCgyvAXA/nWyFMqklEkqs34VlAkVSZpYSG1cAUsBdlMTX4dLDaVCQpAzqMlpt/DBhEfQZDe6x1zvuqRG+NWcRjBvVM7TR6ZmFOK/ObjN6i4s736ruA8InjXnnnK13z+ypdokUsPGAY3mFg+E7R7ujISCZO6hYC1NLaqDvuGaERAINHIEUCpidHfiqebuqJDFkmZ+5mvqAKjHwbu6EvhH/DXDY9jXJHHQzCl5f46ZQDZmnq6CX5BQSybqujy8q/OzOTN1bZ5aKlXX5+LOWPjf5WpF4Vt3nbZyzgT0Xj+7WowUiccWiyc5O16eeb0en7fe12Ukr+AdFiwJS2wXavdXU5ZYraDWi9QaaHkLvh1pGWiIKRyDhbt026b/3PnI5eoRHyLo+vmJ0UWWM4r0bnTqEsvFDcOG7+9Oj5ovQQfoBaeAC5wBPhAAMTADngEcWAESyIGrYB28Dt4Eb4G3wfvgI3ATfA6+AF+Br8E34FtwC3wHboMfwc/gF/Ar+A38Af4Ef4G/wT+wHfZDBwzCObgMVfgyfAWuw1fha3ADfgA/hZ/BW/AH+BP83X7Vfs2+bn/DvmF/z/6h/RP7zeJhZhssnWo+CbZ87F/+C1BLAwQUAAAACACcAmRSiMdv3jQOAAApkwAAKAAAAGNhbnZhc18yMTAzMDMxMDUxMTZfMWY4OF8zXy8xX1NoZWV0MS50eHTtXWlv20Ya/u5foU+LbrEZzH0gKyzSuEeKNA1qp+kCAgSKh62tInkpuXE2yH/fd0SRHJIj+qJkOWaRWtLwGs7wfd7nvYZjignFbPzul9fjk1c/vjlafbqIh/xoHnyIhwTLgMeMjmkUHwUn58FF/Obyw9BgzI6SFPZAi3R6Np2jq6HQCnHDOZfVLZ+GhBGEpRIUb7Ysp/+L0cdptDofEkKRoIQQ7W47j6dn56sh54gLOEwfBfOzWTzECK//O0qD1XRR/gxeT+fxcbA8H26+25MMSbH5eHE5mcV2Q77Dy8VskQ6pEEfBD9PZ7BRumdpt9ke2jVPDjVTUwC4n718uygZ5NF3+Pl1O4ZRDAqdbhH++XSzt0bOL82B9ltn04o/8y7/tl7evf15M53b3t69fBhfZl/fQsunPz5cfJvb7i9UqCM/jiMIek8XVaXy1Gn4epauEjIL5crr+E16cESroKFyEiwA2UaHk5z/e/frmx2P4f/zmS7ZlBccuw2A2nZ/hrOViFqySRfoBfx4li/lqNZmNEjxKlh+ny+UoCc+DdBmv8OCnePZXvJqGwbPvFrPo+ZfKuT/DqWB44NjnoxT6KcToLI3juf0ymV3G8LnegLNmvG7EjZN8O4qvLoJ5FEfF6Z6PwuVZPI/TaZieTUYhzv7VDh1dBGk0Wl0JieEvPD3rD6ntB6V8/aGx/WBsvQsz6104X+8i8HoXONp+SLLeBSYVr887TefB6jINZqP/hrZhZZ/CeJ4E4WqR4uotVDoFwziBgaR8MAoTOjhZwbFfjoKfFumL2fRsPe+/x+X39yk8AjDbp1c/wpdn5YN6evVT/Fv5XI+9oklILpuKcJpgkM3EkU1B6pKpmUSSMC55QzKxQAIkVvkkU+TdaAomwaXsrSWT6B3L5jNyWMLZPrfkznNbTC1lgqsxjbEztbgxs5wijZWW5DaYywRGQnOspGdqRW1mu55XZ6YOeHofHHufj+CyPTR3As0lMI8uoeOXBHP4fWmFbP2hhfuRNRLMBuufJtvHkMqum8bsNBpXjlBZqzHZRpV9yOyDOaexR6wPyHYxODtea7dzirnHG5z3Jms1g0HtdsloMjiJgzQ8fzVPFk01hQeoHAbiXj+/bq03xrlHrDxD5XTKOU3Rxc2B/p7+Po3ixVuYTl9Hi37qal+McM+8uXo+XK1jaSqTiN1JdIb01veL1l84HbhXya/pPiO1s2teeTaMe/binmX1hqjncchPoCu/SDePYz6+qjKf+ZG42irca+WHKFl5zIjnblVdkq5jT3fWsKzQsKE2jICGJY6GbXInLBHVTCtR17BSIcwNobKpYClwJ0UpLQ5yFazWYCYJYF37MWoeXLOSGnFK08XHV/O3xO60+V60n6xvkeX3eEHGp4vxr5P/xOFq/CabNs3AWJQwbezogjY3O5S4cjTcyyvQaVdDUz2saJf3f+AuYDBWxHloTNFWPi46a6JVXr5pA94mCkYO/T+eptDJ6WI+pLbb5U92BNwiPs0oYzI+/v6HF+9en46PX52cjn/47ddfxm9f/Pb9m9MhLzpnKQncrL1us+3TzXlpFIUTDcNP23gpNwwxhSk2damhwC8ZVpgpDy8Fq0JJIwx9AF56aGJzaIQ0Y5ztrLQnpLf3FYSXaRrPV8fTJGnyI9Cun49fvBt/9wLavpR8yKfEN3TEVKjK/ekQd8+jtKvQ7T7NexssV2kcfDgB8PTe0BZSpyvko7zCmg9seJeq8YicOtR4isOT8kGpHsm9/V5z0YsbeG7ub907SqwFRRnRSBrrCWhY9wZxbQQRTRCVAJQEtAj3+W24QkIYSWgPorsE0Q+LKE7nDkK+XFym0zjdLz6mwadHhImAiDJDxI+L9M/309V5acV+U34d/G0DmGXTPwYvLdjYK8eDb0v0+fvO5FgWcjwJQ2O9dLxNjgU3iAobG6nLMaMGaUF1scX1v2pjewGo1bOhg2NDvXtup+454WEGli94PEgAB5Y7Df45eDmmO4u5FF4DnUwiHoHEi1avgQZFC2OjWUPiBd8q8WAOYiWk9IVCn5i8d+00KHHa5zQw8HDFAjbLLU4DucVpQPgBQFEPM/eOAnSAG4XzRzEN2l5gQUrnjyP1pfenxIjC++Pu53p/yN28P4J27P1xBKUtKrkd/dr4jqLIAPzxnu8cIN/pQeaOICPUTWNWOndkiFpspxJE8YUs89gOqcSI8rMXwaFKxCa/qBuGIbgWzjGemJPmtWui3cdqDBNCWf2t2liX5AwpQF7c8Jcw1WZnCQSPhyK+YI2SiDHGpXwiuLNn3sXjIOSwWW/hXQRvIV60h8RHDIn1OPOoclCXZCyDBG6McshYCQYFGSv2wyUZ40IiJa2btTUUh28aipMdkbGSjZXiU6KibniRDUecK4kbOWLODTZQkRuNJOFKedkYQUSBdthTXu6Do+LBsbG192m3XmbbRAzJGoEYrJuZvq33uYZdihsMAwTYQ+QoJPbXI8Yx4Um7UZWAWbatllmTE71tPG1DryrRrZx8VeifPd9jGDySefdBfsI/rWf+1RwkLFp8/Kbpy3fc9/DsJOyGugHf18FXuPRNwKXAAKqm1aUPEGh9dbRh4gpbtEAZNp68oDXVFBqEwAOqUtvkB0JVD6o9nztYUfbiIL4/jlV+UjdRsJY9WFi8/9q9sz/ANBATwILobmanBOuIGEqxr7xiY3Z66ysk9FDBRO7J7MRfl9XpQLjP6gyIotwmX8S91fmUUKpude7azsyln7K6nbnGisLOhNFChjODTTd2Ztcpn468tKZ8SqS5tK6yOgqW99fMlDYMabAllS/muWen/0Oj4MERoj7HYZdwZHxufbbFXPQnPlRtJ09OI3azLTcpn+0FQ6+ny91VrhZGVmBIHOkxTVohRVALHEKqRha5UgoJmEnlK77gAklgV5J4IMVgRDQYYHsqvughpYeU/UGKrBaQbQKHtWTxlmzraiL4jaKJyo9NRVnfPoy0iQqkHjOctGGJoQRpsLa0ajhslLY11LJKQfKKFESosY7uJpRQbqkLV9o8DSzZs5FWaojbpWTJA0C5HsHuX5e9s5CgYhJxxpmipamWY4AwpammpERCchig0lTTlCIJY8Z1a34WKU013JqfJTym2jPgL0wyoaVrrD0jEmGjNbOyScbRdOkAzFtabyDjYFZt86NoscxPEJnJhI0Zwdcs87O9KEXjbHB8pX2y6IenKKU38x6+sK+HrFtX7n0/j/bAbuJQqgTksrVKHXAKAbUzTRd0jlg+oSScIso1V9wjlVkH7WWfglB2TG5c9uIjNyXYbvFA857dPHao2LMH2nGWFLTGpSs5rWGq0N8NWgMgUaE1bCutafdAm2480AUIToiZxOGYUX63OJyWCikCQ+MDwSwOJ7Uv/VPAWGnM5Z7qZZ8SCg5uG3yDDT32PVrs202tTR52Ey7oZcKuKW4Pu4HMg+ArqnRr2I3eFPRYN6BXhN0mzEREAOiJ1rCb4sDhiGK4DnrG1tpoTblnkQDGAKKphBHpw26HZo/1PvLHUI6jzc3Lcq7xkbfH7a5fDFB5152rFe0I916quVRwwLUlPPcP+U2kVBEHOGstHQSqhbSiRNI6nBGMAc+AwvmSqZgkSEkhtW9FU2MQnM+IJ5JM1ePZU8Kz6lIJ9TK+2iKNt11pyYkE3hnAtkQIixVbfoIJmsXp7j1pIQ9EZPlUaw0hEwIprbnwAJAwiEtCNPXlMVHEleTER6g2rrQ9JXY/NP50bEQ6eqNpRE6ISDiWkSLwZyImvTvtCUHfTt1pDhEpLMsCAVTFn4aREVwy6Szi6UBFFw41b5zw7rZlQ2paCBkxAhkGmqC5wjxmfCseEgVdpkwzX2ihNzB7Qvb1otLjzeu8/zoNoYwYt8o6aMOUWi5AgSi+HIENnGzPHiBPCks6JVdN9uSJVUYMnm47pdsW1G6pluluRW2qGeKcKmJcdawLBVSo43xH5q6pTQSzBetEyptWWLSm7dze1dtlyk7hIA5VIhmDmWlV4BwUuC3/93hUbPyfcy60R+LgGbb1//6wmF2ZUhGmn0hyQK/An5QC5xVXq3DdqPlrKrapc9dpsvG4Vt2wOt/VIQe1t8jQ1sxqhx2cZ0X07fTADLbfRrt/+q/cvbMH2hBxgQ0gWdjmmulpw2HQhmt8MhXF9ICUoR7zXVMGeOgR5lQK2R4cdnVjJ0WZXafEhJFhIoYxjnqm/RhExpWJO2UEbk2L4buWGcoIEsS+NsDxepGbZ5Ftf3VNO8u+tcjkLPsZIUhpxcAuaOPZz0DCEJPwV1wrbXGSKBs7iHsF9Rikzcmd8Umbq78OS0EZVSTttOsnJxreiX7qOnvJcRu0eZe1tvW4lHmM09Jmb4qNwQgIY1md0nuXe+P0aRin+11N+O5pS8ZnNquaT7ySnZBXFkvX/K69RLPN7s7zGUT1Rnk196Ga2FDppaYDT6u377kBLSvTwPaxFHIkgyAAYGW4pyKPgYpcQ/yvd69vz13ojoo4TmLHVtYSGY2pwket1SM2Hu51rz9wtNsRmSSJCYgM6W3lxyAyrkx0Wj3Xqa3scFdHZhxRuIutzO5oK996bekuI1KloCUcTwwIGv1KddODL5ra9SIczgL8vvX5nTU6HtpOLtdmXy/YgBUyzGjRKPIp1+Cj1dV4D2ltPUdiAi0TkBjWS8yjkBgZ8JjRMY38ld3O67EfXGIExs5qlDYjT1Cq3BeQ+zxLzgu6D+mtB47EJFyA9mettcC9xByMxLgi4ZEY9xUxByAxji/Wvo4+l4Q2HeO81OyQXLGFxMTUBNYCZa2FpI9YYr4y88ddn7pT86dLgXGW+y0ERmFRLGRcGD/cY/zgGxk/h5aO939QSwMEFAAAAAgAnAJkUggKzCv+AAAAlAEAACgAAABjYW52YXNfMjEwMzAzMTA1MTE2XzFmODhfM18vMV9TaGVldDEuaW5pZZDNasMwDIDvfoo9QYntOD8Hn9auMbSjkLJsuxjPcRZTxwbHWbu3X+KyQqkukj4Jgb6xVyqwNZXC/oiRI5jgBMOEQJhx2BUFxxyMy86rGBQ9O39qdOhrJbzsme0c6D6dGyhcJTHA19LyFx0abVt3pjMR8rT1brLtszPO0xSVaZnlqMzAG9s0vGHrY0UhQrcbEVcbtq2OFGJS/PNRemfMwY3vNMflA/2giNzoZHXgRtnv0PPgDvqiDEXFCqdZSvK7aS2FUfQO2eVXOTwwzux+T4HYaauuzyBCgBG/ys8KY743mHeJWgzGUTS4W6ondCV1PxuCQE4+YmZbdZmN/QFQSwECAAAUAAAACACcAmRSNi1RBwsCAAAJBgAADAAAAAAAAAABAAAAAAAAAAAAX2dlbmVyYWwuaW5pUEsBAgAAFAAAAAgAnAJkUnzPgWNWFgAA4ugAAAwAAAAAAAAAAQAAAAAANQIAADFfU2hlZXQxLnR4dFBLAQIAABQAAAAIAJwCZFK9X/uZ/QAAAIwBAAAMAAAAAAAAAAEAAAAAALUYAAAxX1NoZWV0MS5pbmlQSwECAAAUAAAACACcAmRS+MuY2PEEAAByHgAADwAAAAAAAAAAAAAAAADcGQAAcHJpbnRpbmZvLnBsaXN0UEsBAgAAFAAAAAgAnAJkUojHb940DgAAKZMAACgAAAAAAAAAAQAAAAAA+h4AAGNhbnZhc18yMTAzMDMxMDUxMTZfMWY4OF8zXy8xX1NoZWV0MS50eHRQSwECAAAUAAAACACcAmRSCArMK/4AAACUAQAAKAAAAAAAAAABAAAAAAB0LQAAY2FudmFzXzIxMDMwMzEwNTExNl8xZjg4XzNfLzFfU2hlZXQxLmluaVBLBQYAAAAABgAGAJcBAAC4LgAAAAA=-->
