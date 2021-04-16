@@ -63,10 +63,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl"
+CMAKE_SOURCE_DIR = "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/AlgorithmImpl.dir/depend.make
@@ -79,42 +79,42 @@ include CMakeFiles/AlgorithmImpl.dir/flags.make
 
 CMakeFiles/AlgorithmImpl.dir/main.cpp.o: CMakeFiles/AlgorithmImpl.dir/flags.make
 CMakeFiles/AlgorithmImpl.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AlgorithmImpl.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgorithmImpl.dir/main.cpp.o -c "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AlgorithmImpl.dir/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgorithmImpl.dir/main.cpp.o -c "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/main.cpp"
 
 CMakeFiles/AlgorithmImpl.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AlgorithmImpl.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/main.cpp" > CMakeFiles/AlgorithmImpl.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/main.cpp" > CMakeFiles/AlgorithmImpl.dir/main.cpp.i
 
 CMakeFiles/AlgorithmImpl.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AlgorithmImpl.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/main.cpp" -o CMakeFiles/AlgorithmImpl.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/main.cpp" -o CMakeFiles/AlgorithmImpl.dir/main.cpp.s
 
 CMakeFiles/AlgorithmImpl.dir/Signature.cpp.o: CMakeFiles/AlgorithmImpl.dir/flags.make
 CMakeFiles/AlgorithmImpl.dir/Signature.cpp.o: ../Signature.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AlgorithmImpl.dir/Signature.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgorithmImpl.dir/Signature.cpp.o -c "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/Signature.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AlgorithmImpl.dir/Signature.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgorithmImpl.dir/Signature.cpp.o -c "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/Signature.cpp"
 
 CMakeFiles/AlgorithmImpl.dir/Signature.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AlgorithmImpl.dir/Signature.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/Signature.cpp" > CMakeFiles/AlgorithmImpl.dir/Signature.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/Signature.cpp" > CMakeFiles/AlgorithmImpl.dir/Signature.cpp.i
 
 CMakeFiles/AlgorithmImpl.dir/Signature.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AlgorithmImpl.dir/Signature.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/Signature.cpp" -o CMakeFiles/AlgorithmImpl.dir/Signature.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/Signature.cpp" -o CMakeFiles/AlgorithmImpl.dir/Signature.cpp.s
 
 CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.o: CMakeFiles/AlgorithmImpl.dir/flags.make
 CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.o: ../PartsSearcher.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.o -c "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/PartsSearcher.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.o -c "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/PartsSearcher.cpp"
 
 CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/PartsSearcher.cpp" > CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/PartsSearcher.cpp" > CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.i
 
 CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/PartsSearcher.cpp" -o CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/PartsSearcher.cpp" -o CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.s
 
 # Object files for target AlgorithmImpl
 AlgorithmImpl_OBJECTS = \
@@ -130,7 +130,7 @@ AlgorithmImpl: CMakeFiles/AlgorithmImpl.dir/Signature.cpp.o
 AlgorithmImpl: CMakeFiles/AlgorithmImpl.dir/PartsSearcher.cpp.o
 AlgorithmImpl: CMakeFiles/AlgorithmImpl.dir/build.make
 AlgorithmImpl: CMakeFiles/AlgorithmImpl.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable AlgorithmImpl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable AlgorithmImpl"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AlgorithmImpl.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -143,6 +143,6 @@ CMakeFiles/AlgorithmImpl.dir/clean:
 .PHONY : CMakeFiles/AlgorithmImpl.dir/clean
 
 CMakeFiles/AlgorithmImpl.dir/depend:
-	cd "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl" "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl" "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug" "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug" "/Users/vladimir/Desktop/Work/Education/7 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles/AlgorithmImpl.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl" "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl" "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug" "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug" "/Users/vladimir/Desktop/Work/Education/7-8 Semester/Player/AlgorithmImpl/cmake-build-debug/CMakeFiles/AlgorithmImpl.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/AlgorithmImpl.dir/depend
 
