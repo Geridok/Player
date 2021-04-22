@@ -42,10 +42,16 @@
     <ClCompile Include="SignatureCalculator\Data\Signature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReadWriteSignature.cpp">
+    <ClCompile Include="ConverterBSRTtoString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConverterBSRTtoString.cpp">
+    <ClCompile Include="DataInformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadWriteData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,9 +98,6 @@
     <ClInclude Include="ImageFormats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReadWriteSignature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ConverterBSRTtoString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -102,6 +105,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="winbgitypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataInformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoPart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="videoSplitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadWriteData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

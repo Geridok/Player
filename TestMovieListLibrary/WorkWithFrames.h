@@ -1,13 +1,13 @@
 #pragma once
-#include "stdafx.h"
 #include <atlbase.h>
 #include "SignatureCalculator/Data/Signature.h"
 #include "SignatureCalculator/SignatureCalculator.h"
 #include "SignatureCalculator/Data/GeneralSettings.h"
 #include <vector>
 #include "ImageFormats.h"
-#include "ReadWriteSignature.h"
 #include <chrono>
+#include "VideoPart.h"
+#include "videoSplitter.h"
 #define SIGNATURE_SIZE 512
 
 extern std::vector<std::chrono::microseconds> calc_1;
@@ -17,7 +17,7 @@ extern bool firstVideo;
 class SignatureHandler
 {
 public:
-	SignatureHandler(uint64_t buffSize) :m_buffSize{buffSize} {
+	SignatureHandler() {
 		calculator.initialize(CGeneralSettings::enum_ImageSize_512x512, 128, CGeneralSettings::enum_Sens_High); 
 		HRESULT hres = workWithImage.CoCreateInstance(CLSID_StretchImage);
 		ATLASSERT(hres == S_OK);
@@ -53,14 +53,30 @@ public:
 		}
 
 	}
+	bool addSignature(std::vector<CSignature*> signatures) {
+		if (this->signatures.empty()) {
+			this->signatures = signatures;
+			return true;
+		}
+		return false;
+		
+	}
 
+	bool addVideoParts(std::vector<std::shared_ptr<VideoPart>> videoParts) {
+		if (this->videoParts.empty()) {
+			this->videoParts = videoParts;
+			return true;
+
+		}
+		return false;
+	}
 	void saveSignaturesToFile(std::string fileName) {
 		if (!signatures.empty()) {
-			RWSignature.writeSignaturesToFile(fileName, signatures);
+			//rwData.writeSignaturesToFile(fileName, signatures);
 		}
 	}
 	bool loadSignaturesFromFile(std::string fileName,size_t signaturesAmount) {
-		signatures = RWSignature.readSignaturesFromFile(fileName, signaturesAmount);
+		//signatures = data::readSignaturesFromFile(fileName, signaturesAmount);
 		if (signatures.empty()) return false;
 		return true;
 	}
@@ -71,12 +87,18 @@ public:
 	size_t getSigAmount() const {
 		return signatures.size();
 	}
+	void splitVideoToVideoPArt() {
+		videoParts = splitVideo(0.6, 0.2, signatures);
+	}
+	
+	std::vector<std::shared_ptr<VideoPart>> getVideoParts() const {
+		return videoParts;
+	}
 
 private:
 	std::vector<CSignature*> signatures;
+	std::vector<std::shared_ptr<VideoPart>> videoParts;
 	CSignatureCalculator calculator;
-	ReadWriteSignature RWSignature;
 	ATL::CComPtr<IStretchImage> workWithImage;
-	uint64_t m_buffSize;
 };
 

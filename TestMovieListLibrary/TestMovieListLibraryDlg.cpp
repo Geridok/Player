@@ -3,10 +3,8 @@
 //
 
 #include "stdafx.h"
-#include "TestMovieListLibrary.h"
 #include "TestMovieListLibraryDlg.h"
-#include "WorkWithFrames.h"
-#include "SignatureComparator.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -25,11 +23,9 @@ CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
 {	
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-	m_signaturesHandler_1 = new SignatureHandler(0);
-	m_signaturesHandler_2 = new SignatureHandler(0);
+	m_signaturesHandler = std::make_shared<SignatureHandler>();
 
-	m_Player_1 = new CPlayer(m_signaturesHandler_1);
-	m_Player_2 = new CPlayer(m_signaturesHandler_2);
+	m_Player = new CPlayer(m_signaturesHandler);
 
 	converter = ConvertBSRTtoString();
 	comparator = SignatureComparator();
@@ -38,25 +34,22 @@ CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
 void CTestMovieListLibraryDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_FILE, m_editFileName_1);
-	DDX_Control(pDX, IDC_FILE2, m_editFileName_2);
+	DDX_Control(pDX, IDC_EDIT_FILE_TO_ADD, m_FileNameToAddCEdit);
+	DDX_Control(pDX, IDC_EDIT_AVG_CALC, m_AvgCalcTimeCEdit);
+	DDX_Control(pDX, IDC_EDIT_FILE_TO_COMPARE, m_fileNameToCompareCEdit);
+	DDX_Control(pDX, IDC_STATUS_INFORMATION, m_ProgramStatusCEdit);
 
-	DDX_Control(pDX, IDC_EDIT2, m_editAvgCalcTime_1);
-	DDX_Control(pDX, IDC_EDIT3, m_editAvgCalcTime_2);
-	DDX_Control(pDX, IDC_EDIT4, m_editAvgCompTime);
-	DDX_Control(pDX, IDC_EDIT5, m_editRangeFrom);
-	DDX_Control(pDX, IDC_EDIT6, m_editRangeTo);
-
-	DDX_Control(pDX, IDC_START, m_Start);
-	DDX_Control(pDX, IDC_OUT_FILE_NAME, m_editOutFileName);
+	DDX_Control(pDX, IDC_Start, m_startButton);
+	DDX_Control(pDX, IDC_BROWSE_FILE_TO_COMPARE, m_fileToSearchButton);
+	DDX_Control(pDX, IDC_BROWSE_DATA_BASE, m_AddFileToDataBaseButton);
 }
 
 BEGIN_MESSAGE_MAP(CTestMovieListLibraryDlg, CDialog)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_BROWSE, &CTestMovieListLibraryDlg::OnBnClickedBrowse)
-	ON_BN_CLICKED(IDC_START, &CTestMovieListLibraryDlg::OnBnClickedStart)
-	ON_BN_CLICKED(IDC_BROWSE2, &CTestMovieListLibraryDlg::OnBnClickedBrowse2)
+	ON_BN_CLICKED(IDC_BROWSE_DATA_BASE, &CTestMovieListLibraryDlg::OnBnClickedAddToDataBase)
+	ON_BN_CLICKED(IDC_Start, &CTestMovieListLibraryDlg::OnBnClickedStart)
+	ON_BN_CLICKED(IDC_BROWSE_FILE_TO_COMPARE, &CTestMovieListLibraryDlg::OnBnClickedBrowseFileToCompare)
 END_MESSAGE_MAP()
 
 
@@ -73,9 +66,17 @@ BOOL CTestMovieListLibraryDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	//if( InitAll() != S_OK )  EndDialog(IDCANCEL);
 
-	m_Start.EnableWindow(TRUE);
-	//m_File.EnableWindow(FALSE);
-	//m_File_2.EnableWindow(FALSE);
+	m_startButton.EnableWindow(FALSE);
+	m_fileToSearchButton.EnableWindow(FALSE);
+	
+
+	if (dataStorage.loadDataFromFile()) {
+		m_ProgramStatusCEdit.SetWindowTextW(CString("Data base loaded sucsessful"));
+		m_fileToSearchButton.EnableWindow(TRUE);
+	}
+	else {
+		m_ProgramStatusCEdit.SetWindowTextW(CString("Loading failed. Data base empty or some error occur"));
+	}
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -116,61 +117,78 @@ HCURSOR CTestMovieListLibraryDlg::OnQueryDragIcon()
 }
 
 
-void CTestMovieListLibraryDlg::OnBnClickedBrowse()
+void CTestMovieListLibraryDlg::OnBnClickedAddToDataBase()
 {
 	CFileDialog dlg(TRUE, _T(""), _T(""), OFN_FILEMUSTEXIST, _T("All Files (*.*)|*.*||"), this);
 	if( IDOK==dlg.DoModal() ) {
-		m_editFileName_1.SetWindowText(dlg.GetPathName());
+		m_FileNameToAddCEdit.SetWindowText(dlg.GetPathName());
 	}
 	CString fileName1;
-	m_editFileName_1.GetWindowText(fileName1);
+	m_FileNameToAddCEdit.GetWindowText(fileName1);
 	m_bstrFileName_1 = fileName1;
 	if (CheckMovie(m_bstrFileName_1) != S_OK) {
-		m_editFileName_1.SetWindowTextW(CString("Can't read file, plz choose different file"));
-		stop = true;
+		m_FileNameToAddCEdit.SetWindowTextW(CString("Can't read file, plz choose different file"));
+		m_startButton.EnableWindow(FALSE);
 		return;
 	}
-	stop = false;
+	m_signaturesHandler = std::make_shared<SignatureHandler>();
+	m_Player = new CPlayer(m_signaturesHandler);
+	m_startButton.EnableWindow(TRUE);
+	m_AddFileToDataBaseButton.SetFocus();
+	isAddAction = true;
 }
 
 
-void CTestMovieListLibraryDlg::OnBnClickedBrowse2()
-{
-	CFileDialog dlg(TRUE, _T(""), _T(""), OFN_FILEMUSTEXIST, _T("All Files (*.*)|*.*||"), this);
-	if (IDOK == dlg.DoModal()) {
-		m_editFileName_2.SetWindowText(dlg.GetPathName());
-	}
-	CString fileName;
-	m_editFileName_2.GetWindowText(fileName);
-	m_bstrFileName_2 = fileName;
-	if (CheckMovie(m_bstrFileName_2) != S_OK) {
-		m_editFileName_2.SetWindowTextW(CString("Can't read file, plz choose different file"));
-		stop = true;
-		return;
-	}
-	stop = false;
-}
 
 void CTestMovieListLibraryDlg::OnBnClickedStart()
 {
-	if (!stop) {
+	ReadWriteData::test();
+	return;
+	if (isAddAction) {
+		m_ProgramStatusCEdit.SetWindowTextW(CString("The video is being processed"));
+		CString fileName;
+		m_FileNameToAddCEdit.GetWindowText(fileName);
+		CDialog::OnPaint();
+		CComBSTR str = fileName;
+		if (InitPlayer(m_Player, m_bstrFileName_1) != S_OK) {
+			LPCTSTR lp = L"Error when processed video";
+			m_ProgramStatusCEdit.Clear();
+			m_ProgramStatusCEdit.ReplaceSel(lp);
+			return;
+		}
+		m_ProgramStatusCEdit.SetWindowTextW(CString("Split video to parts"));
+		m_signaturesHandler->splitVideoToVideoPArt();
+		m_ProgramStatusCEdit.SetWindowTextW(CString("Add new video to data storage and write to disk"));
+		if (!dataStorage.addNewVideoToDataBase(m_signaturesHandler)) {
+			m_ProgramStatusCEdit.SetWindowTextW(CString("Error when write data to disk"));
+			return;
+		}
+		m_ProgramStatusCEdit.SetWindowTextW(CString("New video added sucsessful"));
+		m_startButton.EnableWindow(FALSE);
+		m_FileNameToAddCEdit.Clear();
+		m_fileNameToCompareCEdit.Clear();
+	}
+	else {
+		m_ProgramStatusCEdit.SetWindowTextW(CString("Searching started"));
+
+	}
+	/*if (!stop) {
 		CString fileName1;
 		CString fileName2;
 
-		m_editFileName_1.GetWindowText(fileName1);
+		m_fileNameToCompareCEdit.GetWindowText(fileName1);
 		m_bstrFileName_1 = fileName1;
 
-		m_editFileName_2.GetWindowText(fileName2);
+		m_FileNameToAddCEdit.GetWindowText(fileName2);
 		m_bstrFileName_2 = fileName2;
 
-		InitPlayer(m_Player_1, m_bstrFileName_1);
+		InitPlayer(m_Player, m_bstrFileName_1);
 		firstVideo = false;
-		InitPlayer(m_Player_2, m_bstrFileName_2);
 
-		GetOutputFileName();
+		//GetOutputFileName();
 		std::pair<std::pair<uint64_t, uint64_t>, std::pair<uint64_t, uint64_t>> ranges;
-		for (int index = 0; index < m_signaturesHandler_1->getSigAmount(); index++) {
-			ranges = comparator.comparePair(m_signaturesHandler_1, index, m_signaturesHandler_2, 0, 0.5);
+		for (int index = 0; index < m_signaturesHandler->getSigAmount(); index++) {
+			//ranges = comparator.comparePair(m_signaturesHandler, index, m_signaturesHandler_2, 0, 0.5);
 			if (ranges.second.second != 0) { break; }
 		}
 
@@ -180,7 +198,7 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 		std::string calcOut_2 = fileNameOutput + "Calc2.txt";
 		std::string compOut = fileNameOutput + "Comp.txt";
 
-		/*size_t i = 1;
+		size_t i = 1;
 		{
 			i = 0;
 			std::ofstream diffFout(diffOut);
@@ -213,41 +231,22 @@ void CTestMovieListLibraryDlg::OnBnClickedStart()
 				i++;
 			}
 		}
-		*/
+		
 		//auto avg = std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0));
 
 		CString avg_1;
 		avg_1.Format(_T("%d"), std::accumulate(calc_1.begin(), calc_1.end(), decltype(calc_1)::value_type(0)) / calc_1.size());
-		m_editAvgCalcTime_1.SetWindowText(avg_1);
-
-		CString avg_2;
-		avg_2.Format(_T("%d"), std::accumulate(calc_2.begin(), calc_2.end(), decltype(calc_2)::value_type(0)) / calc_2.size());
-		m_editAvgCalcTime_2.SetWindowText(avg_2);
+		m_AvgCalcTimeCEdit.SetWindowText(avg_1);
 
 		CString avgcomp;
 		avgcomp.Format(_T("%d"), std::accumulate(compare.begin(), compare.end(), decltype(compare)::value_type(0)) / compare.size());
-		m_editAvgCompTime.SetWindowText(avgcomp);
+		m_AvgCompTimeCEdit.SetWindowText(avgcomp);
 
-		CString rangeFrom;
-		rangeFrom.Format(_T("%d"), ranges.second.first);
-		m_editRangeFrom.SetWindowText(rangeFrom);
-
-		CString rangeTo;
-		rangeTo.Format(_T("%d"), ranges.second.second);
-		m_editRangeTo.SetWindowText(rangeTo);
 		
 
-		ReloadPlayer();
-	}
-	stop = true;
-}
-
-
-void CTestMovieListLibraryDlg::GetOutputFileName()
-{
-	CString str;
-	m_editOutFileName.GetWindowText(str);
-	m_bsrtOutFileName = str;
+		
+	}*/
+	ReloadPlayer();
 }
 
 
@@ -261,16 +260,11 @@ HRESULT CTestMovieListLibraryDlg::InitPlayer(CPlayer* player, CComBSTR path)
 
 void CTestMovieListLibraryDlg::ReloadPlayer()
 {
-	delete m_signaturesHandler_1;
-	delete m_Player_1;
-	delete m_signaturesHandler_2;
-	delete m_Player_2;
+	delete m_Player;
 
-	m_signaturesHandler_1 = new SignatureHandler(0);
-	m_signaturesHandler_2 = new SignatureHandler(0);
+	m_signaturesHandler = std::make_shared<SignatureHandler>();
 
-	m_Player_1 = new CPlayer(m_signaturesHandler_1);
-	m_Player_2 = new CPlayer(m_signaturesHandler_2);
+	m_Player = new CPlayer(m_signaturesHandler);
 }
 
 HRESULT CTestMovieListLibraryDlg::CheckMovie(CComBSTR fileName)
@@ -287,3 +281,9 @@ HRESULT CTestMovieListLibraryDlg::CheckMovie(CComBSTR fileName)
 	return S_OK;
 }
 
+
+
+void CTestMovieListLibraryDlg::OnBnClickedBrowseFileToCompare()
+{
+	// TODO: Add your control notification handler code here
+}

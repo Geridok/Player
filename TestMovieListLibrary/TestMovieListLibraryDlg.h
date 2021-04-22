@@ -8,6 +8,10 @@
 #include "ConverterBSRTtoString.h"
 #include "SignatureComparator.h"
 #include <numeric>
+#include "TestMovieListLibrary.h"
+#include "WorkWithFrames.h"
+#include "SignatureComparator.h"
+#include "DataInformation.h"
 
 // CTestMovieListLibraryDlg dialog
 class CTestMovieListLibraryDlg : public CDialog
@@ -16,10 +20,7 @@ class CTestMovieListLibraryDlg : public CDialog
 public:
 	CTestMovieListLibraryDlg(CWnd* pParent = NULL);// standard constructor
 	~CTestMovieListLibraryDlg() {
-		delete m_signaturesHandler_1;
-		delete m_Player_1;
-		delete m_signaturesHandler_2;
-		delete m_Player_2;
+		delete m_Player;
 	}
 // Dialog Data
 	enum { IDD = IDD_TESTMOVIELISTLIBRARY_DIALOG };
@@ -32,21 +33,21 @@ public:
 protected:
 	HICON m_hIcon;
 
-	CEdit m_editFileName_1;
-	CEdit m_editFileName_2;
+	CButton m_startButton;
+	CButton m_fileToSearchButton;
+	CButton m_AddFileToDataBaseButton;
 
-	CEdit m_editAvgCalcTime_1;
-	CEdit m_editAvgCalcTime_2;
-	CEdit m_editAvgCompTime;
-	CEdit m_editRangeFrom;
-	CEdit m_editRangeTo;
+	CEdit m_fileNameToCompareCEdit;
+	CEdit m_FileNameToAddCEdit;
 
-	CButton m_Start;
-	CEdit m_editOutFileName;
+	CEdit m_AvgCalcTimeCEdit;
+	CEdit m_AvgCompTimeCEdit;
+
+	CEdit m_ProgramStatusCEdit;
+
 	static const int cTaskFrameCnt = 5*25;
 
-	CPlayer *m_Player_1;
-	CPlayer *m_Player_2;
+	CPlayer *m_Player;
 
 	CComBSTR m_bstrFileName_1;
 	CComBSTR m_bstrFileName_2;
@@ -54,8 +55,7 @@ protected:
 	CComBSTR m_bsrtOutFileName;
 	CStatic m_textField;
 
-	SignatureHandler* m_signaturesHandler_1;
-	SignatureHandler* m_signaturesHandler_2;
+	std::shared_ptr<SignatureHandler> m_signaturesHandler;
 
 protected:
 	HRESULT InitPlayer(CPlayer *player, CComBSTR path);
@@ -66,13 +66,16 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
-	afx_msg void OnBnClickedBrowse();
+	afx_msg void OnBnClickedAddToDataBase();
 	afx_msg void OnBnClickedStart();
-	void GetOutputFileName();
+	//void GetOutputFileName();
 private:
 	ConvertBSRTtoString converter;
 	SignatureComparator comparator;
-	bool stop = false;
+	DataInformation dataStorage;
+	bool isAddAction = true;
 public:
-	afx_msg void OnBnClickedBrowse2();
+	//afx_msg void OnBnClickedBrowse2();
+
+	afx_msg void OnBnClickedBrowseFileToCompare();
 };
