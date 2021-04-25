@@ -9,7 +9,6 @@
 #include "VideoPart.h"
 #include "videoSplitter.h"
 #define SIGNATURE_SIZE 512
-
 extern std::vector<std::chrono::microseconds> calc_1;
 extern std::vector<std::chrono::microseconds> calc_2;
 extern bool firstVideo;
@@ -94,6 +93,9 @@ public:
 	std::vector<std::shared_ptr<VideoPart>> getVideoParts() const {
 		return videoParts;
 	}
+
+public:
+	size_t selfIndex;
 
 private:
 	std::vector<CSignature*> signatures;

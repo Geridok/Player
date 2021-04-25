@@ -11,7 +11,7 @@
 #include "TestMovieListLibrary.h"
 #include "WorkWithFrames.h"
 #include "SignatureComparator.h"
-#include "DataInformation.h"
+#include "DataStorage.h"
 
 // CTestMovieListLibraryDlg dialog
 class CTestMovieListLibraryDlg : public CDialog
@@ -33,9 +33,9 @@ public:
 protected:
 	HICON m_hIcon;
 
-	CButton m_startButton;
+	CButton m_addButton;
 	CButton m_fileToSearchButton;
-	CButton m_AddFileToDataBaseButton;
+	CButton m_FileNameToAddButton;
 
 	CEdit m_fileNameToCompareCEdit;
 	CEdit m_FileNameToAddCEdit;
@@ -67,15 +67,18 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 	afx_msg void OnBnClickedAddToDataBase();
-	afx_msg void OnBnClickedStart();
+	afx_msg void OnBnClickedAdd();
 	//void GetOutputFileName();
 private:
 	ConvertBSRTtoString converter;
 	SignatureComparator comparator;
-	DataInformation dataStorage;
-	bool isAddAction = true;
+	DataStorage *m_dataStorage;
 public:
 	//afx_msg void OnBnClickedBrowse2();
 
 	afx_msg void OnBnClickedBrowseFileToCompare();
+	afx_msg void OnBnClickedSearchLinear();
+	afx_msg void OnBnClickedSearchVp();
+	CButton m_searchLinearButton;
+	CButton m_searchVPButton;
 };

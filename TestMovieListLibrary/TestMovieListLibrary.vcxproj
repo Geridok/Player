@@ -63,7 +63,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -113,9 +113,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConverterBSRTtoString.cpp" />
-    <ClCompile Include="DataInformation.cpp" />
+    <ClCompile Include="DataStorage.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ReadWriteData.cpp" />
+    <ClCompile Include="SearchAlgoritm.cpp" />
     <ClCompile Include="SignatureCalculator\Data\GeneralSettings.cpp" />
     <ClCompile Include="SignatureCalculator\Data\Signature.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../stdafx.h</PrecompiledHeaderFile>
@@ -137,11 +138,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConverterBSRTtoString.h" />
-    <ClInclude Include="DataInformation.h" />
+    <ClInclude Include="DataStorage.h" />
     <ClInclude Include="ImageFormats.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ReadWriteData.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SearchAlgoritm.h" />
+    <ClInclude Include="AdditionalStructures.h" />
     <ClInclude Include="SignatureCalculator\Data\GeneralSettings.h" />
     <ClInclude Include="SignatureCalculator\Data\Signature.h" />
     <ClInclude Include="SignatureCalculator\FFTW\Array.h" />
@@ -166,9 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\TestMovieListLibrary.rc2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
