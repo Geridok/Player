@@ -45,6 +45,20 @@ public:
 		}
 		return videos;
 	}
+	void addSignatureHandler(std::shared_ptr<SignatureHandler> signatureHandler) {
+		if (signatureHandler->getSigAmount() != 0 && !signatureHandler->getVideoParts().empty()) {
+			signatureHandler->selfIndex = videos.size();
+			videos.push_back(std::move(signatureHandler));
+		}
+	}
+
+	bool writeToDisk() const {
+		if (!videos.empty()) {
+			m_dataWorker->writeAllDataToFile(videos);
+			return true;
+		}
+		return false;
+	}
 private:
 	std::vector<std::shared_ptr<SignatureHandler>> videos;
 	ReadWriteData *m_dataWorker;

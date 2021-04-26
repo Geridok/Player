@@ -34,9 +34,6 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{d6723131-8cb9-429c-b85f-7867716571f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI\Signature">
-      <UniqueIdentifier>{493658af-55e5-4c2f-b52a-993776533b0f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Signature">
       <UniqueIdentifier>{3f0f0a4e-8e7f-4f4a-8828-a7baed8472d2}</UniqueIdentifier>
     </Filter>

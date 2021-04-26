@@ -24,13 +24,15 @@ public:
 		auto signaturesVec = signatureHandler->getSignatures();
 		for (auto singleSignature : signaturesVec) {
 			auto result = SearchInBase(singleSignature);
-			for (auto receivedSearchInfo : result) {
-				if (!defineSearchWindow(receivedSearchInfo, singleSignature)) {
-					result.remove(receivedSearchInfo);
+			for (auto receivedSearchInfo = result.begin(); receivedSearchInfo != result.end(); receivedSearchInfo++) {
+				if (!defineSearchWindow(*receivedSearchInfo, singleSignature)) {
+					result.erase(receivedSearchInfo);
 				}
 			}
-			for (auto selfSearchInfo : searchInfoList) {
-				workWithSearchInfo(selfSearchInfo, singleSignature);
+			for (auto selfSearchInfo = searchInfoList.begin(); selfSearchInfo != searchInfoList.end(); selfSearchInfo++) {
+				if (!workWithSearchInfo(*selfSearchInfo, singleSignature)) {
+					searchInfoList.erase(selfSearchInfo);
+				}
 			}
 
 			for (auto receivedSearchInfo : result) {
@@ -123,26 +125,24 @@ private:
 		}
 		return true;
 	}
-	void workWithSearchInfo(SearchInfo& currentSearchInfo, CSignature* streamSignature) {
+	bool workWithSearchInfo(SearchInfo& currentSearchInfo, CSignature* streamSignature) {
 		auto signatureVec = signatureHandlerStorageVec[currentSearchInfo.signatureHandlerIndex]->getSignatures();
 
 		if (streamSignature->difference(*signatureVec[currentSearchInfo.currentSignatureIndex + 1]) <= c_2) {
 			currentSearchInfo.currentSignatureIndex++;
-			return;
+			return true;
 		}
 		else {
 			if (!checkSignatureInWindow(currentSearchInfo, streamSignature)) {
 				signatureHandlerStorageVec[currentSearchInfo.signatureHandlerIndex]->getVideoParts()[currentSearchInfo.videoPartIndex]->isActive = false;
-				searchInfoList.remove(currentSearchInfo);
-				//TODO: understand how work with videoPart
+				return false;
 			}else {
 				if (currentSearchInfo.searchWindow.rightIndex == currentSearchInfo.currentSignatureIndex) {
 					signatureHandlerStorageVec[currentSearchInfo.signatureHandlerIndex]->getVideoParts()[currentSearchInfo.videoPartIndex]->isActive = false;
-					searchInfoList.remove(currentSearchInfo);
-					//TODO: check correctness
+					return false;
 				}
 			}
-			return;
+			return true;;
 		}
 
 	}

@@ -80,6 +80,7 @@ public:
 	afx_msg void OnBnClickedBrowseFileToCompare();
 	afx_msg void OnBnClickedSearchLinear();
 	afx_msg void OnBnClickedSearchVp();
-	CButton m_searchLinearButton;
 	CButton m_searchVPButton;
+	afx_msg void OnBnClickedBaseFromDir();
+	CButton m_getPathToDirCButton;
 };

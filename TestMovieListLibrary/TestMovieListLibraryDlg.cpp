@@ -4,7 +4,9 @@
 
 #include "stdafx.h"
 #include "TestMovieListLibraryDlg.h"
+#include <filesystem>
 
+//namespace fs = std::filesystem;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -15,7 +17,6 @@ std::vector<std::chrono::microseconds> calc_2 = std::vector<std::chrono::microse
 std::vector<std::chrono::microseconds> compare = std::vector<std::chrono::microseconds>{};
 
 bool firstVideo = true;
-
 
 // CTestMovieListLibraryDlg dialog
 CTestMovieListLibraryDlg::CTestMovieListLibraryDlg(CWnd* pParent /*=NULL*/)
@@ -43,8 +44,8 @@ void CTestMovieListLibraryDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_ADD_TO_DATABASE, m_addButton);
 	DDX_Control(pDX, IDC_BROWSE_FILE_TO_COMPARE, m_fileToSearchButton);
 	DDX_Control(pDX, IDC_BROWSE_DATA_BASE, m_FileNameToAddButton);
-	DDX_Control(pDX, IDC_SEARCH_LINEAR, m_searchLinearButton);
 	DDX_Control(pDX, IDC_SEARCH_VP, m_searchVPButton);
+	DDX_Control(pDX, IDC_BASE_FROM_DIR, m_getPathToDirCButton);
 }
 
 BEGIN_MESSAGE_MAP(CTestMovieListLibraryDlg, CDialog)
@@ -53,8 +54,8 @@ BEGIN_MESSAGE_MAP(CTestMovieListLibraryDlg, CDialog)
 	ON_BN_CLICKED(IDC_BROWSE_DATA_BASE, &CTestMovieListLibraryDlg::OnBnClickedAddToDataBase)
 	ON_BN_CLICKED(IDC_ADD_TO_DATABASE, &CTestMovieListLibraryDlg::OnBnClickedAdd)
 	ON_BN_CLICKED(IDC_BROWSE_FILE_TO_COMPARE, &CTestMovieListLibraryDlg::OnBnClickedBrowseFileToCompare)
-	ON_BN_CLICKED(IDC_SEARCH_LINEAR, &CTestMovieListLibraryDlg::OnBnClickedSearchLinear)
 	ON_BN_CLICKED(IDC_SEARCH_VP, &CTestMovieListLibraryDlg::OnBnClickedSearchVp)
+	ON_BN_CLICKED(IDC_BASE_FROM_DIR, &CTestMovieListLibraryDlg::OnBnClickedBaseFromDir)
 END_MESSAGE_MAP()
 
 
@@ -76,7 +77,6 @@ BOOL CTestMovieListLibraryDlg::OnInitDialog()
 	m_addButton.EnableWindow(FALSE);
 
 	m_fileToSearchButton.EnableWindow(FALSE);
-	m_searchLinearButton.EnableWindow(FALSE);
 	m_searchVPButton.EnableWindow(FALSE);
 
 	if (m_dataStorage->loadDataFromFile()) {
@@ -126,25 +126,6 @@ HCURSOR CTestMovieListLibraryDlg::OnQueryDragIcon()
 }
 
 
-void CTestMovieListLibraryDlg::OnBnClickedAddToDataBase()
-{
-	CFileDialog dlg(TRUE, _T(""), _T(""), OFN_FILEMUSTEXIST, _T("All Files (*.*)|*.*||"), this);
-	if( IDOK==dlg.DoModal() ) {
-		m_FileNameToAddCEdit.SetWindowText(dlg.GetPathName());
-	}
-	CString fileName1;
-	m_FileNameToAddCEdit.GetWindowText(fileName1);
-	m_bstrFileName_1 = fileName1;
-	if (CheckMovie(m_bstrFileName_1) != S_OK) {
-		m_FileNameToAddCEdit.SetWindowTextW(CString("Can't read file, plz choose different file"));
-		m_addButton.EnableWindow(FALSE);
-		return;
-	}
-	m_signaturesHandler = std::make_shared<SignatureHandler>();
-	m_Player = new CPlayer(m_signaturesHandler);
-	m_addButton.EnableWindow(TRUE);
-	m_addButton.SetFocus();
-}
 
 void CTestMovieListLibraryDlg::OnBnClickedBrowseFileToCompare()
 {
@@ -158,20 +139,14 @@ void CTestMovieListLibraryDlg::OnBnClickedBrowseFileToCompare()
 	m_bstrFileName_1 = fileName1;
 	if (CheckMovie(m_bstrFileName_1) != S_OK) {
 		m_fileNameToCompareCEdit.SetWindowTextW(CString("Can't read file, plz choose different file"));
-		m_searchLinearButton.EnableWindow(FALSE);
 		m_searchVPButton.EnableWindow(FALSE);
 		return;
 	}
 	m_signaturesHandler = std::make_shared<SignatureHandler>();
 	m_Player = new CPlayer(m_signaturesHandler);
-	m_searchLinearButton.EnableWindow(TRUE);
 	m_searchVPButton.EnableWindow(TRUE);
 }
 
-void CTestMovieListLibraryDlg::OnBnClickedSearchLinear()
-{
-	// TODO: Add your control notification handler code here
-}
 
 
 void CTestMovieListLibraryDlg::OnBnClickedSearchVp()
@@ -314,6 +289,61 @@ HRESULT CTestMovieListLibraryDlg::CheckMovie(CComBSTR fileName)
 
 
 
+void CTestMovieListLibraryDlg::OnBnClickedAddToDataBase()
+{
+	CFileDialog dlg(TRUE, _T(""), _T(""), OFN_FILEMUSTEXIST, _T("All Files (*.*)|*.*||"), this);
+	if (IDOK == dlg.DoModal()) {
+		m_FileNameToAddCEdit.SetWindowText(dlg.GetPathName());
+	}
+	CString fileName1;
+	m_FileNameToAddCEdit.GetWindowText(fileName1);
+	m_bstrFileName_1 = fileName1;
+	if (CheckMovie(m_bstrFileName_1) != S_OK) {
+		m_FileNameToAddCEdit.SetWindowTextW(CString("Can't read file, plz choose different file"));
+		m_addButton.EnableWindow(FALSE);
+		return;
+	}
+	m_signaturesHandler = std::make_shared<SignatureHandler>();
+	m_Player = new CPlayer(m_signaturesHandler);
+	m_addButton.EnableWindow(TRUE);
+	m_addButton.SetFocus();
+}
 
 
+void CTestMovieListLibraryDlg::OnBnClickedBaseFromDir()
+{
+	CString pathToFile;
+	CFileDialog dlg(TRUE, _T(""), _T(""), OFN_FILEMUSTEXIST, _T("All Files (*.*)|*.*||"), this);
+	if (IDOK == dlg.DoModal()) {
+		pathToFile = dlg.GetPathName();
+	}
 
+	std::string pathToFileStr = CW2A(pathToFile.GetString());
+	auto index = pathToFileStr.find_last_of("\\");
+	auto pathToDir = pathToFileStr.substr(0,index);
+	std::filesystem::path p1 = pathToFileStr;
+
+	for (const auto& file : std::filesystem::directory_iterator(pathToDir)) {
+		m_bstrFileName_1 = pathToFile;
+		if (CheckMovie(m_bstrFileName_1) != S_OK) {
+			continue;
+		}
+		auto signaturesHandler = std::make_shared<SignatureHandler>();
+		auto player = new CPlayer(signaturesHandler);
+		if (InitPlayer(player, m_bstrFileName_1) != S_OK) {
+			delete player;
+			continue;
+		}
+		signaturesHandler->splitVideoToVideoPArt();
+		m_dataStorage->addSignatureHandler(signaturesHandler);
+		delete player;
+	}
+	if (m_dataStorage->writeToDisk()) {
+		m_ProgramStatusCEdit.SetWindowTextW(CString("Base created sucsesful"));
+	}
+	else {
+		m_ProgramStatusCEdit.SetWindowTextW(CString("Base didn't created or folder is empty"));
+	}
+
+	
+}

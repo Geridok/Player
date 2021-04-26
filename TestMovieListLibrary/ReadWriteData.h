@@ -59,44 +59,6 @@ public:
 			count++;
 		}
 	}
-	void writeDataToFile(std::vector<std::shared_ptr<SignatureHandler>> signatureHandlerVec) {
-
-		std::ofstream fileId;
-		fileId.open(dataFileName, std::ios::out | std::ios::app);
-
-		Json::Value event;
-		Json::Value signatureVecString(Json::arrayValue);
-		size_t count = 0;
-		for (auto singleSignatureHandler : signatureHandlerVec) {
-			std::string sigHandlerName = "signatureHandler_" + std::to_string(count);
-			auto signatureVec = singleSignatureHandler->getSignatures();
-			for (auto it : signatureVec) {
-				CString signature;
-				it->saveToString(signature);
-				char* c_signature = new char[it->getSize()];
-				std::string signString(c_signature);
-				delete[]c_signature;
-				signatureVecString.append(Json::Value(signString));
-			}
-			event[ReadWriteData::baseName][sigHandlerName]["selfIndex"] = singleSignatureHandler->selfIndex;
-			event[ReadWriteData::baseName][sigHandlerName]["signatures"] = signatureVecString;
-			auto videoPartVec = singleSignatureHandler->getVideoParts();
-			size_t index = 0;
-			for (auto singleVideoPart : videoPartVec) {
-				std::string videoPartName = "videoPart+" + std::to_string(index);
-				event[ReadWriteData::baseName][sigHandlerName][videoPartName][VideoPartNames::mainSignatureIndex] = singleVideoPart->mainSignatureIndex;
-				event[ReadWriteData::baseName][sigHandlerName][videoPartName][VideoPartNames::lastSignatureIndex] = singleVideoPart->lastSignatureIndex;
-				event[ReadWriteData::baseName][sigHandlerName][videoPartName][VideoPartNames::selfIndex] = singleVideoPart->selfIndex;
-				index++;
-			}
-		}
-
-
-		fileId << event;
-
-		fileId.close();
-
-	}
 
 	void writeSignatureHandlerToFile(std::shared_ptr<SignatureHandler> signatureHandler, size_t signatureHandlerIndex) {
 
@@ -130,6 +92,38 @@ public:
 
 		fileId.close();
 	}
+
+	void writeAllDataToFile(std::vector<std::shared_ptr<SignatureHandler>> signatureHandlerVec) {
+		std::ofstream fileId;
+		fileId.open(dataFileName);
+		for (auto signatureHandler : signatureHandlerVec) {
+			Json::Value signatureVecString(Json::arrayValue);
+			std::string sigHandlerName = "signatureHandler_" + std::to_string(signatureHandler->selfIndex);
+			auto signatureVec = signatureHandler->getSignatures();
+			for (auto it : signatureVec) {
+				CString signature;
+				it->saveToString(signature);
+				CT2CA pszConvertedAnsiString(signature);
+				std::string signString(pszConvertedAnsiString);
+				signatureVecString.append(Json::Value(signString));
+			}
+			m_event[ReadWriteData::baseName][sigHandlerName]["selfIndex"] = signatureHandler->selfIndex;
+			m_event[ReadWriteData::baseName][sigHandlerName]["signatures"] = signatureVecString;
+			auto videoPartVec = signatureHandler->getVideoParts();
+			size_t partIndex = 0;
+			for (auto singleVideoPart : videoPartVec) {
+				auto videoPartName = "videoPart_" + std::to_string(partIndex);
+				m_event[ReadWriteData::baseName][sigHandlerName][videoPartName][VideoPartNames::mainSignatureIndex] = singleVideoPart->mainSignatureIndex;
+				m_event[ReadWriteData::baseName][sigHandlerName][videoPartName][VideoPartNames::lastSignatureIndex] = singleVideoPart->lastSignatureIndex;
+				m_event[ReadWriteData::baseName][sigHandlerName][videoPartName][VideoPartNames::selfIndex] = singleVideoPart->selfIndex;
+				partIndex++;
+			}
+		}
+		fileId << m_event;
+
+		fileId.close();
+	}
+
 	std::vector<std::shared_ptr<SignatureHandler>> readAllDataFromFile() {
 		Json::Value root;   // will contain the root value after parsing.
 		Json::CharReaderBuilder builder;
