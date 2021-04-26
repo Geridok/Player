@@ -84,6 +84,9 @@
     <ClCompile Include="WorkWithFrames.cpp">
       <Filter>Source Files\Algorithm</Filter>
     </ClCompile>
+    <ClCompile Include="WorkWithiniFile.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReadWriteData.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="TestMovieListLibraryDlg.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkWithIniFile.h">
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

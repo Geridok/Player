@@ -20,6 +20,7 @@ struct VideoPart {
     size_t mainSignatureIndex;
     size_t lastSignatureIndex;
     size_t selfIndex;
+    bool isActive = false;
     bool operator==(const VideoPart&a) const{
         return (a.mainSignatureIndex == mainSignatureIndex && a.lastSignatureIndex == lastSignatureIndex && selfIndex== a.selfIndex);
     }

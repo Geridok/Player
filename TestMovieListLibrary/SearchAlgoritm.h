@@ -3,72 +3,57 @@
 #include "AdditionalStructures.h"
 #include "DataStorage.h"
 #include <list>
+
+extern double c_3;
+extern double c_2;
+
+
+
 class SearchAlgoritm
 {
 public:
-	SearchAlgoritm(double c_2) :c_2{ c_2 } {
+	SearchAlgoritm(){
 		dataStorage = DataStorage::getInstance();
 		signatureHandlerStorageVec = dataStorage->getDataBase();
 	}
 
 
 public:
-	//Do not use videoPart in search
-	std::vector<SearchResult> startLinearSearch(std::shared_ptr<SignatureHandler> signatureHandler) {
-		auto signaturesVec = signatureHandler->getSignatures();
-		for (auto singleSignature : signaturesVec) {
-			auto result = linearSearchInBase(singleSignature);
-		}
-	}
-
 	//Use VideoPart in Search
 	std::vector<SearchResult> VPSearchInBase(std::shared_ptr<SignatureHandler> signatureHandler) {
 		auto signaturesVec = signatureHandler->getSignatures();
 		for (auto singleSignature : signaturesVec) {
-			auto result = linearSearchInBase(singleSignature);
+			auto result = SearchInBase(singleSignature);
 			for (auto receivedSearchInfo : result) {
+				if (!defineSearchWindow(receivedSearchInfo, singleSignature)) {
+					result.remove(receivedSearchInfo);
+				}
+			}
+			for (auto selfSearchInfo : searchInfoList) {
+				workWithSearchInfo(selfSearchInfo, singleSignature);
+			}
 
+			for (auto receivedSearchInfo : result) {
+				signatureHandlerStorageVec[receivedSearchInfo.signatureHandlerIndex]->getVideoParts()[receivedSearchInfo.videoPartIndex]->isActive = true;
+				searchInfoList.emplace_back(receivedSearchInfo);
 			}
 		}
 	}
 
 private:
-	std::list<SearchInfo> linearSearchInBase(CSignature* streamSignature) {
-
-		std::list<SearchInfo> resultVector;
-		size_t signaturehandlerIndex = 0;
-		for (auto signatureHandler : signatureHandlerStorageVec) {
-			auto signatures = signatureHandler->getSignatures();
-			size_t signatureIndex = 0;
-			for (auto singleSignature : signatures) {
-				if (streamSignature->difference(*singleSignature) <= c_2) {
-					resultVector.push_back(SearchInfo(SearchWindow(signatureIndex - 1,signatureIndex + 1), signatureHandler->selfIndex,signatureIndex));
-				}
-				signatureIndex++;
-			}
-			signaturehandlerIndex++;
-		}
-		return resultVector;
-	}
-
-	std::list<SearchInfo> VPSearchInBase(CSignature* streamSignature, double compareThreshold) {
+	std::list<SearchInfo> SearchInBase(CSignature* streamSignature) {
 		std::list<SearchInfo> resultVector;
 
 		for (auto signatureHandler : signatureHandlerStorageVec) {
 			auto signaturesVec = signatureHandler->getSignatures();
 			auto videoPartVec = signatureHandler->getVideoParts();
 			for (auto singleVideoPart : videoPartVec) {
-				if (streamSignature->difference(*signaturesVec[singleVideoPart->mainSignatureIndex]) <= compareThreshold) {
-					resultVector.push_back(SearchInfo(signatureHandler->selfIndex, singleVideoPart->selfIndex));
+				if (!videoPartVec[singleVideoPart->isActive]) {
+					if (streamSignature->difference(*signaturesVec[singleVideoPart->mainSignatureIndex]) <= c_3) {
+						resultVector.push_back(SearchInfo(signatureHandler->selfIndex, singleVideoPart->selfIndex));
+					}
 				}
 			}
-		}
-		for (auto it : searchInfoList) {
-			auto counter = std::find_if(resultVector.begin(), resultVector.end(), [&it](const SearchInfo* f)->bool
-				{ return (it.signatureHandlerIndex == f->signatureHandlerIndex && it.videoPartIndex == f->videoPartIndex); });
-				if (counter != resultVector.end()) {
-					resultVector.erase(counter);
-				}
 		}
 		return resultVector;
 
@@ -133,15 +118,110 @@ private:
 			if (currentSignutureIndex == edgeIndex) {
 				currentSearchInfo.currentSignatureIndex = currentSignutureIndex;
 				currentSearchInfo.searchWindow.leftIndex = currentSignutureIndex - 1;
-				currentSearchInfo.searchWindow.rightIndex = currentSignutureIndex - 1;
+				currentSearchInfo.searchWindow.rightIndex = currentSignutureIndex + 1;
 			}
 		}
 		return true;
+	}
+	void workWithSearchInfo(SearchInfo& currentSearchInfo, CSignature* streamSignature) {
+		auto signatureVec = signatureHandlerStorageVec[currentSearchInfo.signatureHandlerIndex]->getSignatures();
+
+		if (streamSignature->difference(*signatureVec[currentSearchInfo.currentSignatureIndex + 1]) <= c_2) {
+			currentSearchInfo.currentSignatureIndex++;
+			return;
+		}
+		else {
+			if (!checkSignatureInWindow(currentSearchInfo, streamSignature)) {
+				signatureHandlerStorageVec[currentSearchInfo.signatureHandlerIndex]->getVideoParts()[currentSearchInfo.videoPartIndex]->isActive = false;
+				searchInfoList.remove(currentSearchInfo);
+				//TODO: understand how work with videoPart
+			}else {
+				if (currentSearchInfo.searchWindow.rightIndex == currentSearchInfo.currentSignatureIndex) {
+					signatureHandlerStorageVec[currentSearchInfo.signatureHandlerIndex]->getVideoParts()[currentSearchInfo.videoPartIndex]->isActive = false;
+					searchInfoList.remove(currentSearchInfo);
+					//TODO: check correctness
+				}
+			}
+			return;
+		}
+
+	}
+
+	bool checkSignatureInWindow(SearchInfo& currentSearchInfo, CSignature* streamSignature) {
+		auto signatureVec = signatureHandlerStorageVec[currentSearchInfo.signatureHandlerIndex]->getSignatures();
+
+		if (!(streamSignature->difference(*signatureVec[currentSearchInfo.searchWindow.leftIndex]) <= c_2)) {
+			auto lastIndex = currentSearchInfo.searchWindow.rightIndex;
+			auto currentIndex = currentSearchInfo.searchWindow.leftIndex + 1;
+			bool succesful = false;
+			while (currentIndex + 1 <= lastIndex) {
+				if (streamSignature->difference(*signatureVec[currentIndex + 1]) <= c_2) {
+					currentIndex++;
+					succesful = true;
+					break;
+				}
+				currentIndex++;
+			}
+			if (!succesful) {
+				return false;
+			}
+			currentSearchInfo.searchWindow.leftIndex = currentIndex;
+			if (currentSearchInfo.currentSignatureIndex < currentSearchInfo.searchWindow.leftIndex) {
+				currentSearchInfo.currentSignatureIndex = currentIndex;
+			}
+			else {
+				currentSearchInfo.currentSignatureIndex++;
+			}
+			if (currentIndex == lastIndex) {
+				if (lastIndex + 1 <= signatureVec.size() - 1) {
+					currentSearchInfo.searchWindow.rightIndex = currentIndex + 1;
+				}
+				else {
+					currentSearchInfo.searchWindow.rightIndex = currentIndex;
+				}
+				currentSearchInfo.searchWindow.leftIndex = currentIndex - 1;
+				currentSearchInfo.currentSignatureIndex = currentIndex;
+			}
+
+		}else { currentSearchInfo.currentSignatureIndex++; }
+
+		if (!(streamSignature->difference(*signatureVec[currentSearchInfo.searchWindow.rightIndex]) <= c_2)) {
+
+			auto currentIndex = currentSearchInfo.searchWindow.rightIndex;
+			bool succesful = false;
+			while (currentIndex - 1 >= currentSearchInfo.searchWindow.leftIndex) {
+				if (streamSignature->difference(*signatureVec[currentIndex - 1]) <= c_2) {
+					succesful = true;
+					currentIndex--;
+					break;
+				}
+				currentIndex--;
+			}
+			currentSearchInfo.searchWindow.rightIndex = currentIndex;
+			if (!succesful) {
+				if (currentIndex - 1 < 0) {
+					currentSearchInfo.searchWindow.leftIndex = currentIndex;
+				}
+				else {
+					currentSearchInfo.searchWindow.leftIndex = currentIndex - 1;
+				}
+				currentSearchInfo.searchWindow.rightIndex = currentIndex + 1;
+				currentSearchInfo.currentSignatureIndex = currentIndex;
+			}
+			
+		}else {
+			if (currentSearchInfo.searchWindow.rightIndex - currentSearchInfo.searchWindow.leftIndex <= 1) {
+				if (currentSearchInfo.searchWindow.rightIndex + 1 <= signatureVec.size() - 1) {
+					currentSearchInfo.searchWindow.rightIndex++;
+				}
+			}
+		}
+		return true;
+
 	}
 private:
 	DataStorage* dataStorage;
 	std::vector<std::shared_ptr<SignatureHandler>> signatureHandlerStorageVec;
 	std::list<SearchInfo> searchInfoList;
-	double c_2;
 };
 

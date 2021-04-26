@@ -12,6 +12,7 @@
 #include "WorkWithFrames.h"
 #include "SignatureComparator.h"
 #include "DataStorage.h"
+#include "WorkWithIniFile.h"
 
 // CTestMovieListLibraryDlg dialog
 class CTestMovieListLibraryDlg : public CDialog
