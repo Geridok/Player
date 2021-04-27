@@ -15,14 +15,9 @@ static std::vector<std::shared_ptr<VideoPart>> splitVideo(double c_1,double c_3,
     std::vector<std::shared_ptr<VideoPart>> videoPartHandler;
     while(currentIndex + 1 != signatures.size()){
 
-        auto diff = signatures[currentIndex]->difference(*signatures[currentIndex + 1]);
-        if(diff <= c_1){
             if(signatures[currentIndex]->difference(*signatures[newVideoPart->mainSignatureIndex]) > c_3) {
                 endVideoPart = true;
             }
-        }else{
-            endVideoPart = true;
-        }
         if(endVideoPart){
             newVideoPart->lastSignatureIndex = currentIndex;
             videoPartHandler.push_back(newVideoPart);

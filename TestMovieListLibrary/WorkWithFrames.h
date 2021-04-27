@@ -12,6 +12,7 @@
 extern std::vector<std::chrono::microseconds> calc_1;
 extern std::vector<std::chrono::microseconds> calc_2;
 extern bool firstVideo;
+extern double c_3;
 
 class SignatureHandler
 {

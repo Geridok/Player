@@ -112,7 +112,7 @@ void CTestMovieListLibraryDlg::OnPaint()
 		// Draw the icon
 		dc.DrawIcon(x, y, m_hIcon);
 	}
-	else
+	else 
 	{
 		CDialog::OnPaint();
 	}
@@ -169,6 +169,12 @@ void CTestMovieListLibraryDlg::OnBnClickedAdd()
 		}
 		m_ProgramStatusCEdit.SetWindowTextW(CString("Split video to parts"));
 		m_signaturesHandler->splitVideoToVideoPArt();
+
+
+		auto videoPartVec = m_signaturesHandler->getVideoParts();
+
+
+
 		m_ProgramStatusCEdit.SetWindowTextW(CString("Add new video to data storage and write to disk"));
 		if (!m_dataStorage->addNewVideoToDataBase(m_signaturesHandler)) {
 			m_ProgramStatusCEdit.SetWindowTextW(CString("Error when write data to disk"));
