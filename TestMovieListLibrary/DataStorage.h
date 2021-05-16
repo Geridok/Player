@@ -23,8 +23,8 @@ public:
 	}
 
 public:
-	bool loadDataFromFile() {
-		auto pair = m_dataWorker->readAllDataFromFile();
+	bool loadDataFromFile(std::string fileName) {
+		auto pair = m_dataWorker->readAllDataFromFile(fileName);
 		if (!pair.first.empty() && !pair.second.empty()) {
 			videoVec = pair.first;
 			fileInfoVec = pair.second;
@@ -46,15 +46,14 @@ public:
 			signatureHandlerIndex++;
 			currentSignatureAmount += signatureHandler->getSigAmount();
 			if (videoVec.size() >= maxSignatureAmount) {
-				writeToDisk();
 				videoVec.clear();
 			}
 		}
 	}
 
-	bool writeToDisk() const {
+	bool writeToDisk(std::string fileName) const {
 		if (!videoVec.empty()) {
-			m_dataWorker->writeAllDataToFile(videoVec,fileInfoVec);
+			m_dataWorker->writeAllDataToFile(videoVec,fileInfoVec,fileName);
 			return true;
 		}
 		return false;

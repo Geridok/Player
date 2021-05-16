@@ -91,7 +91,7 @@ public:
 	size_t getSigAmount() const {
 		return signatures.size();
 	}
-	void splitVideoToVideoPArt() {
+	void splitVideoToVideoPart() {
 		videoParts = splitVideo(signatures);
 	}
 	

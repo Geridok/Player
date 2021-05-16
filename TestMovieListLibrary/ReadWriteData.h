@@ -51,21 +51,48 @@ public:
 public:
 	static const std::string dataFileName;
 	static const std::string baseName;
-	static std::vector<CSignature*> readSignaturesFromFile(std::string fileName, size_t signature_amount) {
+	static std::pair<std::vector<std::shared_ptr<SignatureHandler>>, std::vector<std::shared_ptr<VideoFileInfo>>> createDataBaseFromFolder(std::string pathToFoler) {
+		if (!std::filesystem::exists(pathToFoler)) {
+			return {};
+		}
+		std::vector<std::shared_ptr<SignatureHandler>> signatureHandlerVec;
+		std::vector<std::shared_ptr<VideoFileInfo>> videoFileInfoVec;
+		for (const auto& folder : std::filesystem::directory_iterator(pathToFoler)) {
+
+			auto pathToSignatures = folder.path().string() + "\\Signatures.sig";
+			auto pathToInfoFile = folder.path().string() + "\\info.txt";
+
+			auto signatureHandler = std::shared_ptr<SignatureHandler>();
+			auto signatures = ReadWriteData::readSignaturesFromFile(pathToSignatures);
+			if (!signatures.empty()){
+				signatureHandler->addSignature(signatures);
+				signatureHandler->selfIndex = signatureHandlerVec.size();
+				signatureHandlerVec.push_back(signatureHandler);
+			}
+
+			auto videoFileInfo = ReadWriteData::readInfoFile(pathToInfoFile, videoFileInfoVec.size());
+			if (true){
+				videoFileInfoVec.push_back(videoFileInfo);
+			}
+		}
+		return std::make_pair(signatureHandlerVec, videoFileInfoVec);
+	}
+	static std::vector<CSignature*> readSignaturesFromFile(std::string pathTofile) {
 
 		std::vector<CSignature*> signaturesVec;
-		for (size_t i = 0; i < signature_amount; i++)
-		{
+		std::ifstream inputStream(pathTofile);
+		if (!inputStream.is_open()) {
+			return{};
+		}
+		std::string signature;
+		while (1) {
 			CSignature* newSignature = new CSignature();
-			std::string realFileName = fileName + "_" + std::to_string(i) + ".sig";
-			std::ifstream inputStream(realFileName.c_str(), std::ios::binary);
-			if (inputStream) {
-				size_t signatureSize = 0;
-				inputStream >> signatureSize;
-				char* signature = new char[signatureSize];
-				inputStream.read(signature, signatureSize);
-				newSignature->loadFromString(CString(signature));
+			if (std::getline(inputStream, signature)) {
+				newSignature->loadFromString(CString(signature.c_str()));
 				signaturesVec.push_back(newSignature);
+			}
+			else {
+				break;
 			}
 		}
 		return signaturesVec;
@@ -84,6 +111,27 @@ public:
 			delete[]c_signature;
 			count++;
 		}
+	}
+
+	static std::shared_ptr<VideoFileInfo> readInfoFile(std::string pathToFile,size_t selfIndex) {
+		std::ifstream inputStream(pathToFile);
+		if (!inputStream.is_open()) {
+			return {};
+		}
+
+		std::string pathToVideoFile;
+		std::getline(inputStream, pathToVideoFile);
+		pathToVideoFile = pathToVideoFile.substr(pathToVideoFile.find_first_of(":") + 1);
+
+		std::string fileSizeStr;
+		std::getline(inputStream, fileSizeStr);
+		size_t fileSize = std::stoul(fileSizeStr.substr(fileSizeStr.find_first_of(":") + 1));
+
+		std::string lastModified;
+		std::getline(inputStream, lastModified);
+		lastModified = lastModified.substr(lastModified.find_first_of(":") + 1);
+
+		return std::make_shared<VideoFileInfo>(pathToVideoFile, lastModified, fileSize, selfIndex);
 	}
 
 	void writeSignatureHandlerToFile(std::shared_ptr<SignatureHandler> signatureHandler, size_t signatureHandlerIndex) {
@@ -120,10 +168,10 @@ public:
 		fileId.close();
 	}
 
-	void writeAllDataToFile(std::vector<std::shared_ptr<SignatureHandler>> signatureHandlerVec, std::vector<std::shared_ptr<VideoFileInfo>> fileInfoVec) {
+	void writeAllDataToFile(std::vector<std::shared_ptr<SignatureHandler>> signatureHandlerVec, std::vector<std::shared_ptr<VideoFileInfo>> fileInfoVec,std::string pathTofile) {
 		std::ofstream fileId;
-		auto completeFileName = dataFileName + std::to_string(fileCounting) + ".json";
-		fileId.open(dataFileName);
+		auto completeFileName = pathTofile  + ".json";
+		fileId.open(completeFileName);
 
 		Json::Value event;
 
@@ -165,21 +213,13 @@ public:
 		fileId << event;
 
 		fileId.close();
-		fileCounting++;
 	}
 
-	std::pair<std::vector<std::shared_ptr<SignatureHandler>>,std::vector<std::shared_ptr<VideoFileInfo>>> readAllDataFromFile() {
+	std::pair<std::vector<std::shared_ptr<SignatureHandler>>,std::vector<std::shared_ptr<VideoFileInfo>>> readAllDataFromFile(std::string fileName) {
 		Json::Value root;   // will contain the root value after parsing.
-		Json::CharReaderBuilder builder;
-		
-		auto currentFolderPath = std::filesystem::current_path();
+		Json::CharReaderBuilder builder;	
 
-		auto pathToDir = currentFolderPath.string();
-		pathToDir += "/Data";
-
-		for (const auto& file : std::filesystem::directory_iterator(pathToDir)) {
-
-			std::ifstream ifStream(file.path().string(), std::ifstream::binary);
+			std::ifstream ifStream(fileName, std::ifstream::binary);
 			if (!ifStream.is_open()) {
 				return {};
 			}
@@ -262,10 +302,6 @@ public:
 				sortData(signatureHandlerVec, fileInfoVec);
 			}
 			return std::make_pair(signatureHandlerVec, fileInfoVec);
-		}
-
-		return {};
-
 	}
 
 	std::shared_ptr<ParametrsFromDataBase> getParametrs() const {
@@ -293,7 +329,6 @@ public:
 				});
 		}
 	}
-	size_t fileCounting = 0;
 	std::shared_ptr<ParametrsFromDataBase> parametrs;
 };
 

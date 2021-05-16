@@ -34,7 +34,7 @@ public:
 protected:
 	HICON m_hIcon;
 
-	CButton m_fileToSearchButton;
+	CButton m_browseFileToSearchButton;
 
 	CEdit m_ProgramStatusCEdit;
 
@@ -65,12 +65,11 @@ protected:
 private:
 	ConvertBSRTtoString converter;
 	DataStorage *m_dataStorage;
+	CString m_pathToFolderNewDataBase;
 public:
 	//afx_msg void OnBnClickedBrowse2();
 
 	afx_msg void OnBnClickedBrowseFileToCompare();
-	afx_msg void OnBnClickedSearchVp();
-	CButton m_searchVPButton;
 	afx_msg void OnBnClickedBaseFromDir();
 	CButton m_getPathToDirCButton;
 	CEdit m_pathToDataBaseCEdit;
@@ -81,4 +80,7 @@ public:
 	CButton m_startSearchButton;
 	CButton m_startCreationNewDataBase;
 	afx_msg void OnBnClickedStartNewDataBase();
+	afx_msg void OnBnClickedStartCorrelation();
+	CButton m_startCorrelationButton;
+
 };
