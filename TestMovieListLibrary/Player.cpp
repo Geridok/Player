@@ -54,6 +54,7 @@ void CPlayer::Work()
 	while (framesAmount > 0)
 	{
 		if (DecodeFrame()) {
+			CString str;  str.Format(_T("Rest %d frames\n"), framesAmount);  OutputDebugString(str);
 			framesAmount--;
 		}
 		else {

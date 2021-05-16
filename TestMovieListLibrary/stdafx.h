@@ -45,6 +45,7 @@
 #include <atlcom.h>
 #include <atlstr.h>
 #include <atlcoll.h>
+
 #define SAFE_DELETE(p) if(p){delete (p); p = 0;}
 #define SAFE_DELETE_ARRAY(p) if(p){delete [] (p); p = 0;}
 
@@ -53,6 +54,7 @@
 #import "libid:B6D80AF6-B6D4-411A-BFD6-77C1613F511F" named_guids raw_interfaces_only rename("CopyMemory","CopyMemoryLib")
 using namespace ICONVERTIMAGELib;
 #include "ImageFormats.h"
+
 using namespace ATL;
 
 

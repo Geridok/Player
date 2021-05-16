@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "ReadWriteData.h"
 
-const std::string ReadWriteData::dataFileName = "Data/dataBase.json";
+const std::string ReadWriteData::dataFileName = "Data/dataBase_";
 const std::string ReadWriteData::baseName = "DataBase";
 
-ReadWriteData* ReadWriteData::instance = 0;
+ReadWriteData* ReadWriteData::instance = nullptr;
 
 ReadWriteData* ReadWriteData::getInstance()
 {
-    if (instance == 0){
+    if (nullptr == instance){
         instance = new ReadWriteData();
     }
 

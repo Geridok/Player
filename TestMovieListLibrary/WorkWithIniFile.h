@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 
-extern double c_1;
 extern double c_2;
 extern double c_3;
 extern size_t partSize;
@@ -15,11 +14,10 @@ public:
 
 	static std::string fileIniName;
 
-	static void reworkIniFile(double recivedC_1, double recivedC_2, double recivedC_3,size_t recivedPartSize,size_t recivedErrorAmount) {
+	static void reworkIniFile(double recivedC_2, double recivedC_3,size_t recivedPartSize,size_t recivedErrorAmount) {
 		std::ofstream fileId;
 		fileId.open(workWithIniFile::fileIniName, std::ios::out | std::ios::trunc);
-
-		fileId << "c_1 = " << recivedC_1 << "\n";
+;
 		fileId << "c_2 = " << recivedC_2 << "\n";
 		fileId << "c_3 = " << recivedC_3 << "\n";
 		fileId << "partSize = " << recivedPartSize << "\n";
@@ -42,13 +40,15 @@ public:
 			std::string value = line.substr(foudedIndex + 2);
 			writeToGlobal(name, value);
 		}
+		if (c_2 == 0 || c_3 == 0 || partSize == 0 || errorAmount == 0) {
+			ATLASSERT(false);
+			return false;
+		}
 	}
 
 	static void writeToGlobal(std::string name,std::string value) {
 
-		if (name == "c_1") {
-			c_1 = std::stod(value);
-		}else  if(name == "c_2") {
+		if(name == "c_2") {
 			c_2 = std::stod(value);
 		}
 		else if(name == "c_3") {
@@ -58,7 +58,7 @@ public:
 			partSize = std::stoul(value);
 		}
 		else if (name == "errorAmount") {
-			errorAmount == std::stoul(value);
+			errorAmount = std::stoul(value);
 		}
 	}
 };

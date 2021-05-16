@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "fftw++.h"
 std::ifstream fftw::ifWisdom;
 std::ofstream fftw::ofWisdom;

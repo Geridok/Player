@@ -8,15 +8,17 @@
 
 class VideoPartNames {
 public: 
+    static std::string firstSignatureIndex;
     static std::string mainSignatureIndex;
     static std::string lastSignatureIndex;
     static std::string selfIndex;
 };
 
 struct VideoPart {
-    VideoPart(size_t mainSignatureIndex, size_t lastSignatureIndex,size_t selfIndex)
-        : mainSignatureIndex{ mainSignatureIndex }, lastSignatureIndex{ lastSignatureIndex }, selfIndex{selfIndex}{}
+    VideoPart(size_t firstSignatureIndex,size_t mainSignatureIndex, size_t lastSignatureIndex,size_t selfIndex)
+        : firstSignatureIndex{ firstSignatureIndex }, mainSignatureIndex{ mainSignatureIndex }, lastSignatureIndex{ lastSignatureIndex }, selfIndex{ selfIndex }{}
     VideoPart() {}
+    size_t firstSignatureIndex;
     size_t mainSignatureIndex;
     size_t lastSignatureIndex;
     size_t selfIndex;

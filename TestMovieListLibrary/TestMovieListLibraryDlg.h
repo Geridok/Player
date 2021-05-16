@@ -6,13 +6,13 @@
 #include "afxwin.h"
 #include "Player.h"
 #include "ConverterBSRTtoString.h"
-#include "SignatureComparator.h"
 #include <numeric>
 #include "TestMovieListLibrary.h"
 #include "WorkWithFrames.h"
-#include "SignatureComparator.h"
 #include "DataStorage.h"
 #include "WorkWithIniFile.h"
+#include <filesystem>
+#include <chrono>
 
 // CTestMovieListLibraryDlg dialog
 class CTestMovieListLibraryDlg : public CDialog
@@ -34,15 +34,7 @@ public:
 protected:
 	HICON m_hIcon;
 
-	CButton m_addButton;
 	CButton m_fileToSearchButton;
-	CButton m_FileNameToAddButton;
-
-	CEdit m_fileNameToCompareCEdit;
-	CEdit m_FileNameToAddCEdit;
-
-	CEdit m_AvgCalcTimeCEdit;
-	CEdit m_AvgCompTimeCEdit;
 
 	CEdit m_ProgramStatusCEdit;
 
@@ -67,20 +59,26 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
-	afx_msg void OnBnClickedAddToDataBase();
+	afx_msg void OnBnClickedLoadDataBase();
 	afx_msg void OnBnClickedAdd();
 	//void GetOutputFileName();
 private:
 	ConvertBSRTtoString converter;
-	SignatureComparator comparator;
 	DataStorage *m_dataStorage;
 public:
 	//afx_msg void OnBnClickedBrowse2();
 
 	afx_msg void OnBnClickedBrowseFileToCompare();
-	afx_msg void OnBnClickedSearchLinear();
 	afx_msg void OnBnClickedSearchVp();
 	CButton m_searchVPButton;
 	afx_msg void OnBnClickedBaseFromDir();
 	CButton m_getPathToDirCButton;
+	CEdit m_pathToDataBaseCEdit;
+	CEdit m_fileNameToCompareCEdit;
+	afx_msg void OnBnClickedBrowseNewDatabaseButton();
+	CEdit m_pathToNewDataBaseCEdit;
+	afx_msg void OnBnClickedStartSearchVideo();
+	CButton m_startSearchButton;
+	CButton m_startCreationNewDataBase;
+	afx_msg void OnBnClickedStartNewDataBase();
 };

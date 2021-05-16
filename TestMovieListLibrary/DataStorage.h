@@ -4,6 +4,7 @@
 #include <json/value.h>
 #include "ReadWriteData.h"
 
+
 class DataStorage
 {
 private:
@@ -22,45 +23,55 @@ public:
 	}
 
 public:
-	bool addNewVideoToDataBase(std::shared_ptr<SignatureHandler> signatureHandler) {
-		if (signatureHandler->getSigAmount() != 0 && !signatureHandler->getVideoParts().empty()) {
-			signatureHandler->selfIndex = videos.size();
-			m_dataWorker->writeSignatureHandlerToFile(signatureHandler, videos.size());
-			videos.push_back(std::move(signatureHandler));
-			return true;
-		}
-		return false;
-	}
 	bool loadDataFromFile() {
-		auto videoFromFile = m_dataWorker->readAllDataFromFile();
-		if (!videoFromFile.empty()) {
-			videos = videoFromFile;
+		auto pair = m_dataWorker->readAllDataFromFile();
+		if (!pair.first.empty() && !pair.second.empty()) {
+			videoVec = pair.first;
+			fileInfoVec = pair.second;
 			return true;
 		}
 		return false;
 	}
 	const std::vector<std::shared_ptr<SignatureHandler>> getDataBase() const {
-		if (videos.empty()) {
+		if (videoVec.empty()) {
 			return {};
 		}
-		return videos;
+		return videoVec;
 	}
-	void addSignatureHandler(std::shared_ptr<SignatureHandler> signatureHandler) {
+	void addSignatureHandler(std::shared_ptr<SignatureHandler> signatureHandler, std::shared_ptr<VideoFileInfo> fileInfo) {
 		if (signatureHandler->getSigAmount() != 0 && !signatureHandler->getVideoParts().empty()) {
-			signatureHandler->selfIndex = videos.size();
-			videos.push_back(std::move(signatureHandler));
+			signatureHandler->selfIndex = signatureHandlerIndex;
+			videoVec.push_back(signatureHandler);
+			fileInfoVec.push_back(fileInfo);
+			signatureHandlerIndex++;
+			currentSignatureAmount += signatureHandler->getSigAmount();
+			if (videoVec.size() >= maxSignatureAmount) {
+				writeToDisk();
+				videoVec.clear();
+			}
 		}
 	}
 
 	bool writeToDisk() const {
-		if (!videos.empty()) {
-			m_dataWorker->writeAllDataToFile(videos);
+		if (!videoVec.empty()) {
+			m_dataWorker->writeAllDataToFile(videoVec,fileInfoVec);
 			return true;
 		}
 		return false;
 	}
+	std::shared_ptr<ParametrsFromDataBase> getParametrsFromDataBase() {
+		if (!videoVec.empty()) {
+			return m_dataWorker->getParametrs();
+		}
+		return {};
+	}
+
 private:
-	std::vector<std::shared_ptr<SignatureHandler>> videos;
+	std::vector<std::shared_ptr<SignatureHandler>> videoVec;
+	std::vector<std::shared_ptr<VideoFileInfo>> fileInfoVec;
 	ReadWriteData *m_dataWorker;
+	size_t maxSignatureAmount = 571000;
+	size_t currentSignatureAmount = 0;
+	size_t signatureHandlerIndex = 1;
 };
 

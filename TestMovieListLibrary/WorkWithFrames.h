@@ -1,26 +1,32 @@
 #pragma once
 #include <atlbase.h>
 #include "SignatureCalculator/Data/Signature.h"
-#include "SignatureCalculator/SignatureCalculator.h"
 #include "SignatureCalculator/Data/GeneralSettings.h"
 #include <vector>
 #include "ImageFormats.h"
 #include <chrono>
 #include "VideoPart.h"
 #include "videoSplitter.h"
+#include <memory>
+
 #define SIGNATURE_SIZE 512
 extern std::vector<std::chrono::microseconds> calc_1;
 extern std::vector<std::chrono::microseconds> calc_2;
 extern bool firstVideo;
-extern double c_3;
+
 
 class SignatureHandler
 {
 public:
-	SignatureHandler() {
-		calculator.initialize(CGeneralSettings::enum_ImageSize_512x512, 128, CGeneralSettings::enum_Sens_High); 
+	SignatureHandler() { 
 		HRESULT hres = workWithImage.CoCreateInstance(CLSID_StretchImage);
 		ATLASSERT(hres == S_OK);
+
+
+		size_t nSize = SIGNATURE_SIZE * SIGNATURE_SIZE * 4;
+		m_pData.reset(new uint8_t[nSize]);
+		m_nDataSize = nSize;
+
 	}
 	~SignatureHandler() {
 		for (auto it : signatures) {
@@ -29,11 +35,10 @@ public:
 	}
 
 	void addFrame(MovieListLibraryLib::ShotInfo2 newFrame) {
-		
-		if (sizeof(newFrame._pShot) > 0) {
+
+		/*if (sizeof(newFrame._pShot) > 0) {
 			MovieListLibraryLib::ShotInfo2 resizedFrame(newFrame);
-			unsigned char* ch = (unsigned char*)malloc(resizedFrame._shotSizeBytes);
-			resizedFrame._pShot = ch;
+			resizedFrame._pShot = m_pData.get();
 			workWithImage->StretchImage(resizedFrame._pShot, newFrame._pShot, SIGNATURE_SIZE, SIGNATURE_SIZE, newFrame._cx, newFrame._cy, SIGNATURE_SIZE * 3, newFrame._cx * 3, FORMAT_BGR);
 			CSignature *sign = NULL;
 			auto start = std::chrono::high_resolution_clock::now();
@@ -49,8 +54,7 @@ public:
 			if (sign != NULL) {
 					signatures.push_back(sign);	
 			}
-			free(ch);
-		}
+		}*/
 
 	}
 	bool addSignature(std::vector<CSignature*> signatures) {
@@ -88,7 +92,7 @@ public:
 		return signatures.size();
 	}
 	void splitVideoToVideoPArt() {
-		videoParts = splitVideo(0.6, 0.2, signatures);
+		videoParts = splitVideo(signatures);
 	}
 	
 	std::vector<std::shared_ptr<VideoPart>> getVideoParts() const {
@@ -101,7 +105,8 @@ public:
 private:
 	std::vector<CSignature*> signatures;
 	std::vector<std::shared_ptr<VideoPart>> videoParts;
-	CSignatureCalculator calculator;
 	ATL::CComPtr<IStretchImage> workWithImage;
+	std::unique_ptr<uint8_t[]> m_pData;
+	size_t m_nDataSize = 0;
 };
 
