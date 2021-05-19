@@ -62,7 +62,7 @@ public:
 			auto pathToSignatures = folder.path().string() + "\\Signatures.sig";
 			auto pathToInfoFile = folder.path().string() + "\\info.txt";
 
-			auto signatureHandler = std::shared_ptr<SignatureHandler>();
+			auto signatureHandler = std::make_shared<SignatureHandler>();
 			auto signatures = ReadWriteData::readSignaturesFromFile(pathToSignatures);
 			if (!signatures.empty()){
 				signatureHandler->addSignature(signatures);

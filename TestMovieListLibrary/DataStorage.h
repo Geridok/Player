@@ -44,10 +44,6 @@ public:
 			videoVec.push_back(signatureHandler);
 			fileInfoVec.push_back(fileInfo);
 			signatureHandlerIndex++;
-			currentSignatureAmount += signatureHandler->getSigAmount();
-			if (videoVec.size() >= maxSignatureAmount) {
-				videoVec.clear();
-			}
 		}
 	}
 
@@ -71,6 +67,6 @@ private:
 	ReadWriteData *m_dataWorker;
 	size_t maxSignatureAmount = 571000;
 	size_t currentSignatureAmount = 0;
-	size_t signatureHandlerIndex = 1;
+	size_t signatureHandlerIndex = 0;
 };
 

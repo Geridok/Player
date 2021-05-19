@@ -16,6 +16,16 @@ public:
 	// main function - calculate difference between two signatures
 	double difference(const CSignature &signature);
 
+	// check is the shot black or not
+	bool isBlack() {
+		for (auto iter : m_signature) {
+			if (iter >= 0.00002) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	// save/load signature data to/from string
 	void loadFromString(const CString &sigStr);
 	void saveToString(CString &sigStr);

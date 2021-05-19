@@ -219,7 +219,6 @@ void CTestMovieListLibraryDlg::OnBnClickedBrowseNewDatabaseButton()
 	m_dlg.m_ofn.lpstrInitialDir = _T("D:\\Work\\DiplomaWork");
 	if (m_dlg.DoModal() == IDOK) {
 		m_Folder = m_dlg.GetPathName();
-		m_pathToNewDataBaseCEdit.SetWindowText(m_Folder);
 		m_startCreationNewDataBase.EnableWindow(TRUE);
 		std::string pathToFolder = CW2A(m_Folder);
 		std::string status = "New data base from: \"" + pathToFolder + "\"";
@@ -247,9 +246,13 @@ void CTestMovieListLibraryDlg::OnBnClickedStartNewDataBase()
 		signatureHandler->splitVideoToVideoPart();
 	}
 	
-	ATLASSERT(!(pair.first.size() == pair.second.size()));
+	//ATLASSERT((pair.first.size() == pair.second.size()));
 	auto signatureHandlerIterVec = pair.first.begin();
 	auto videoInfoIterVec = pair.second.begin();
+
+	if (pair.first.size() == 0 || pair.second.size() == 0) {
+		m_ProgramStatusCEdit.SetWindowText(CString("Can't create base, some error occur"));
+	}
 
 	for (signatureHandlerIterVec; signatureHandlerIterVec != pair.first.end(); signatureHandlerIterVec++) {
 		m_dataStorage->addSignatureHandler(*signatureHandlerIterVec, *videoInfoIterVec);
@@ -257,6 +260,10 @@ void CTestMovieListLibraryDlg::OnBnClickedStartNewDataBase()
 	}
 	std::string pathtoFile = CW2A(baseName);
 	m_dataStorage->writeToDisk(pathtoFile);
+
+	std::string outString = "Create base with name: \"" + pathtoFile + "\"";
+	m_ProgramStatusCEdit.SetWindowText(CString(outString.c_str()));
+	m_startCorrelationButton.EnableWindow(TRUE);
 }
 
 
@@ -271,13 +278,18 @@ void CTestMovieListLibraryDlg::OnBnClickedStartCorrelation()
 		size_t currentSignaturehandlerIndex = signatureHandlerIndex + 1;
 		for (size_t signaturesMainIndex = 0; signaturesMainIndex <= signaturesMain.size() - 1; signaturesMainIndex++) {
 			while (currentSignaturehandlerIndex != signatureHandlerVec.size() - 1) {
+				auto videoPartsVec = signatureHandlerVec[currentSignaturehandlerIndex]->getVideoParts();
 				auto signaturesOther = signatureHandlerVec[currentSignaturehandlerIndex]->getSignatures();
-				for (size_t signaturesOtherIndex = 0; signaturesOtherIndex <= signaturesOther.size() - 1; signaturesOtherIndex++) {
-					if (signaturesMain[signaturesMainIndex]->difference(*signaturesOther[signaturesOtherIndex]) <= 0.3) {
-						outFile << "SignatureHandleIndex_1:\t " << signatureHandlerIndex << " Frame: " << signaturesMainIndex << " && SignatureHandleIndex_2: " << currentSignaturehandlerIndex << " Frame: " << signaturesOtherIndex << " With diff: " << signaturesMain[signaturesMainIndex]->difference(*signaturesOther[signaturesOtherIndex]) << std::endl;
+				for (size_t videoPartIndex = 0; videoPartIndex <= videoPartsVec.size() - 1; videoPartIndex++) {
+
+					if (signaturesMain[signaturesMainIndex]->difference(*signaturesOther[videoPartsVec[videoPartIndex]->mainSignatureIndex]) <= 0.3) {
+						outFile << "SignatureHandleIndex_1:\t " << signatureHandlerIndex << " Frame: " << signaturesMainIndex << " && SignatureHandleIndex_2: " << currentSignaturehandlerIndex << " Frame: " << videoPartsVec[videoPartIndex]->mainSignatureIndex << " With diff: " << signaturesMain[signaturesMainIndex]->difference(*signaturesOther[videoPartsVec[videoPartIndex]->mainSignatureIndex]) << std::endl;
 					}
 				}
+				currentSignaturehandlerIndex++;
 			}
+			currentSignaturehandlerIndex = signatureHandlerIndex + 1;
 		}
 	}
+	m_ProgramStatusCEdit.SetWindowText(CString("Correletion Completed"));
 }

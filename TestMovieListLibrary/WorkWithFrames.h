@@ -58,12 +58,8 @@ public:
 
 	}
 	bool addSignature(std::vector<CSignature*> signatures) {
-		if (this->signatures.empty()) {
 			this->signatures = signatures;
 			return true;
-		}
-		return false;
-		
 	}
 
 	bool addVideoParts(std::vector<std::shared_ptr<VideoPart>> videoParts) {
