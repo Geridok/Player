@@ -228,7 +228,6 @@
     <ClCompile Include="TestMovieListLibrary.cpp" />
     <ClCompile Include="TestMovieListLibraryDlg.cpp" />
     <ClCompile Include="VideoPart.cpp" />
-    <ClCompile Include="WorkWithFrames.cpp" />
     <ClCompile Include="WorkWithiniFile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +251,7 @@
     <ClInclude Include="VideoPart.h" />
     <ClInclude Include="videoSplitter.h" />
     <ClInclude Include="winbgitypes.h" />
-    <ClInclude Include="WorkWithFrames.h" />
+    <ClInclude Include="SignatureHandler.h" />
     <ClInclude Include="WorkWithIniFile.h" />
   </ItemGroup>
   <ItemGroup>

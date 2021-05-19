@@ -8,7 +8,7 @@
 #include "ConverterBSRTtoString.h"
 #include <numeric>
 #include "TestMovieListLibrary.h"
-#include "WorkWithFrames.h"
+#include "SignatureHandler.h"
 #include "DataStorage.h"
 #include "WorkWithIniFile.h"
 #include <filesystem>

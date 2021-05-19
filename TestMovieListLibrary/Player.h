@@ -1,5 +1,5 @@
 #pragma once
-#include "WorkWithFrames.h"
+#include "SignatureHandler.h"
 
 // CPlayer
 class CPlayer

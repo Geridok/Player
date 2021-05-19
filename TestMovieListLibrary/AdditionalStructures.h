@@ -1,7 +1,7 @@
 #pragma once
 #include "VideoPart.h"
 #include <stdio.h>
-#include "WorkWithFrames.h"
+#include "SignatureHandler.h"
 struct SearchWindow {
 	SearchWindow() {
 		leftIndex = 0;

@@ -75,9 +75,6 @@
     <ClCompile Include="SignatureCalculator\Data\GeneralSettings.cpp">
       <Filter>Source Files\Signature</Filter>
     </ClCompile>
-    <ClCompile Include="WorkWithFrames.cpp">
-      <Filter>Source Files\Algorithm</Filter>
-    </ClCompile>
     <ClCompile Include="WorkWithiniFile.cpp">
       <Filter>Source Files\Other</Filter>
     </ClCompile>
@@ -134,7 +131,7 @@
     <ClInclude Include="winbgitypes.h">
       <Filter>Header Files\Other</Filter>
     </ClInclude>
-    <ClInclude Include="WorkWithFrames.h">
+    <ClInclude Include="SignatureHandler.h">
       <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">

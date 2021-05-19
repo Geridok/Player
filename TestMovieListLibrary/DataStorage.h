@@ -1,5 +1,5 @@
 #pragma once
-#include "WorkWithFrames.h"
+#include "SignatureHandler.h"
 #include <cstdio>
 #include <json/value.h>
 #include "ReadWriteData.h"

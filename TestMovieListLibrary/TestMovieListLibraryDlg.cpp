@@ -259,7 +259,7 @@ void CTestMovieListLibraryDlg::OnBnClickedStartNewDataBase()
 		videoInfoIterVec++;
 	}
 	std::string pathtoFile = CW2A(baseName);
-	m_dataStorage->writeToDisk(pathtoFile);
+	//m_dataStorage->writeToDisk(pathtoFile);
 
 	std::string outString = "Create base with name: \"" + pathtoFile + "\"";
 	m_ProgramStatusCEdit.SetWindowText(CString(outString.c_str()));

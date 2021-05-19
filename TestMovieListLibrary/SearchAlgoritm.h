@@ -1,5 +1,5 @@
 #pragma once
-#include "WorkWithFrames.h"
+#include "SignatureHandler.h"
 #include "AdditionalStructures.h"
 #include "DataStorage.h"
 #include <list>
