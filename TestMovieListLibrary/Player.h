@@ -5,7 +5,7 @@
 class CPlayer
 {
 public:
-	CPlayer(SignatureHandler *signatureHandler) : m_signaturesHandler{signatureHandler} { }
+	CPlayer(std::shared_ptr<SignatureHandler> signatureHandler) : m_signaturesHandler{std::move(signatureHandler)} { }
 	~CPlayer() { 
 		pIMovie = NULL;
 	}
@@ -13,7 +13,7 @@ public:
 	HRESULT Init(BSTR file_name);
 	void Work();
 private:
-	SignatureHandler *m_signaturesHandler;
+	std::shared_ptr<SignatureHandler> m_signaturesHandler;
 	size_t framesAmount = 0;
 	CComPtr<MovieListLibraryLib::ISLTMMovie8> pIMovie;
 private:

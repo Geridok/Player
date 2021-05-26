@@ -13,96 +13,153 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Header Files\Algorithm">
+      <UniqueIdentifier>{cfee749f-3515-4d1c-9cb4-8c74dabad8f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Signature">
+      <UniqueIdentifier>{0ae47b62-f971-4c69-912f-0346f83e8618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Other">
+      <UniqueIdentifier>{86a9cc66-6c1c-4966-8599-098a3b1427a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm">
+      <UniqueIdentifier>{dbb5572d-4099-4b00-a691-5162c4e3c54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Other">
+      <UniqueIdentifier>{d9e1de25-77d0-4f0a-ac21-865a27e21b06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{ab20f065-c48e-4a5c-beb9-b5d08cd33db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{d6723131-8cb9-429c-b85f-7867716571f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\Signature">
+      <UniqueIdentifier>{493658af-55e5-4c2f-b52a-993776533b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Signature">
+      <UniqueIdentifier>{3f0f0a4e-8e7f-4f4a-8828-a7baed8472d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DataStorage.cpp">
+      <Filter>Source Files\Algorithm</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ReadWriteData.cpp">
+      <Filter>Source Files\Algorithm</Filter>
     </ClCompile>
-    <ClCompile Include="TestMovieListLibrary.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SearchAlgoritm.cpp">
+      <Filter>Source Files\Algorithm</Filter>
     </ClCompile>
-    <ClCompile Include="TestMovieListLibraryDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WorkWithFrames.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SignatureCalculator\SignatureCalculator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="VideoPart.cpp">
+      <Filter>Source Files\Algorithm</Filter>
     </ClCompile>
     <ClCompile Include="SignatureCalculator\FFTW\fftw++.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SignatureCalculator\Data\GeneralSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SignatureCalculator\Data\Signature.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReadWriteSignature.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="ConverterBSRTtoString.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMovieListLibraryDlg.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMovieListLibrary.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SignatureCalculator\SignatureCalculator.cpp">
+      <Filter>Source Files\Signature</Filter>
+    </ClCompile>
+    <ClCompile Include="SignatureCalculator\Data\Signature.cpp">
+      <Filter>Source Files\Signature</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Signature</Filter>
+    </ClCompile>
+    <ClCompile Include="SignatureCalculator\Data\GeneralSettings.cpp">
+      <Filter>Source Files\Signature</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkWithFrames.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkWithiniFile.cpp">
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ReadWriteData.h">
+      <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="VideoPart.h">
+      <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DataStorage.h">
+      <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
-    <ClInclude Include="TestMovieListLibrary.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SearchAlgoritm.h">
+      <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
-    <ClInclude Include="TestMovieListLibraryDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkWithFrames.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SignatureCalculator\SignatureCalculator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SignatureCalculator\FFTW\Array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SignatureCalculator\FFTW\fftw++.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SignatureCalculator\FFTW\fftw3.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="AdditionalStructures.h">
+      <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
     <ClInclude Include="SignatureCalculator\Data\GeneralSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SignatureCalculator\Data\Signature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Signature</Filter>
     </ClInclude>
     <ClInclude Include="ImageFormats.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Signature</Filter>
     </ClInclude>
-    <ClInclude Include="ReadWriteSignature.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Signature</Filter>
     </ClInclude>
-    <ClInclude Include="ConverterBSRTtoString.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SignatureCalculator\Data\Signature.h">
+      <Filter>Header Files\Signature</Filter>
+    </ClInclude>
+    <ClInclude Include="SignatureCalculator\SignatureCalculator.h">
+      <Filter>Header Files\Signature</Filter>
     </ClInclude>
     <ClInclude Include="SignatureComparator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Signature</Filter>
+    </ClInclude>
+    <ClInclude Include="videoSplitter.h">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="SignatureCalculator\FFTW\fftw3.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="SignatureCalculator\FFTW\fftw++.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="ConverterBSRTtoString.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="SignatureCalculator\FFTW\Array.h">
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
     <ClInclude Include="winbgitypes.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkWithFrames.h">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMovieListLibrary.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMovieListLibraryDlg.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkWithIniFile.h">
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,8 +176,5 @@
     <None Include="res\TestMovieListLibrary.rc2">
       <Filter>Resource Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
 </Project>
